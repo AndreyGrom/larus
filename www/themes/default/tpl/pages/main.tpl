@@ -11,7 +11,6 @@
             <div>
                 <h3 class="s1">
                     <a href="/news/{$news_last[i].ALIAS}"><img src="/upload/images/news/{$news_last[i].SKIN}" alt="" class="img-responsive"/></a>
-
                 </h3>
                 <h3 class="s2">
                     <span>{$news_last[i].DATE_PUBL|date_format:"%d.%m.%Y"}</span>

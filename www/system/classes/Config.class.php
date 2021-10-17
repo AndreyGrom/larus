@@ -13,11 +13,14 @@ class Config {
         $this->get();
     }
     function get(){
-        $query = 'SELECT * FROM `'.db_pref.'config`';
+        $query = 'SELECT * FROM `agcms_config`';
         $result = $this->db->select($query, array('table' => 'config'));
         foreach ($result as $row){
-            if (isset($row['PARAM']))
-                $this->$row['PARAM'] = $row['VALUE'];
+            if (isset($row['PARAM'])){
+                $param = $row['PARAM'];
+                $this->$param = $row['VALUE'];
+            }
+
         }
         return $this;
     }

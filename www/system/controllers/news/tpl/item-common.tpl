@@ -52,11 +52,11 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="template" class="col-sm-3 control-label">Копировать в блог:</label>
+        <label for="template" class="col-sm-3 control-label">Блог:</label>
         <div class="col-sm-9">
             <select name="blog" class="form-control">
-                <option value="0">Не копировать</option>
-                <option value="1">Копировать</option>
+                <option value="0">Не отображать</option>
+                <option {if $item.BLOG == 1}selected{/if} value="1">Отображать</option>
             </select>
         </div>
     </div>

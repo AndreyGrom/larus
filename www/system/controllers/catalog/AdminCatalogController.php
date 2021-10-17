@@ -182,7 +182,6 @@ class AdminCatalogController extends AdminController {
                 'LINK'   =>$link,
                 'SORT'   => $sort,
                 'MODEL'   => $this->post['model'],
-                'VIDEO_ID'   => $this->post['video'],
             );
 
             if (isset($this->get['act']) || $this->get['act'] =='new'){

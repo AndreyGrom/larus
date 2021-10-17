@@ -3,7 +3,7 @@
 class AdminPagesController extends AdminController {
     public function __construct() {
         parent::__construct();
-        $this->table_name = '`'.db_pref.'pages`';
+        $this->table_name = 'agcms_pages`';
         $this->module_alias = 'pages';
         $this->admin_page_title = 'Управление страницами сайта';
         $this->pages         = array();

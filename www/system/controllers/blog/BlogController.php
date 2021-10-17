@@ -113,6 +113,8 @@ class BlogController extends Controller {
             'get_name' => 'page',
         );
         $result = $this->getPagination($params);
+
+
         $num_pages = $result['num_pages'];
         $pagination = $result['pagination'];
         $items = $result['items'];
