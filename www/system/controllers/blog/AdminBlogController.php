@@ -75,6 +75,7 @@ class AdminBlogController extends AdminController {
                     `PARENT`,`TITLE`, `DESC`, `DESC2`, `ALIAS`, `META_DESC`,`META_KEYWORDS`, `PUBLIC`,`TEMPLATE`, `POSITION`, `IMAGE`)
                     VALUES
                     ('$parent','$title','$desc','$desc2', '$alias','$meta_desc','$meta_keywords','$publ','$template','99999','$image')";
+
                 $query = $this->db->query($sql);
                 $this->cid = $this->db->last_id();
             }else{
@@ -151,8 +152,8 @@ class AdminBlogController extends AdminController {
             'COMMENTS' => $this->post['comments'],
             'PUBLIC' => $this->post['publ'],
             'TEMPLATE' => $this->post['template'],
-            'DATE_PUBL' => strtotime($this->post['date']),
-            'DATE_EDIT' => strtotime($this->post['date']),
+            'DATE_PUBL' => strtotime($this->post['date_publ']),
+            'DATE_EDIT' => strtotime($this->post['date_edit']),
             'TAGS' => $tags_str,
             'FILE1' => $this->post['file1'],
             'FILE2' => $this->post['file2'],
@@ -175,10 +176,12 @@ class AdminBlogController extends AdminController {
             }else{
                 $this->db->update('agcms_blog_i', $params, "ID = " . $this->id);
             }
-            $this->Head("?c=blog&cid=".$parents[0]."&id=$this->id");
+
+            $this->Head("?c=blog&id=$this->id");
         } else {
             $this->session['alert'] = 'Такой алиас уже существует';
         }
+
     }
 
     public function getCategories($parent = false){
@@ -372,6 +375,7 @@ class AdminBlogController extends AdminController {
         $this->content = $this->SetTemplate('cat.tpl');
     }
     public function ShowItem($row){
+        //$row["DATE_PUBL"] = $this->DateFormat2($row["DATE_PUBL"]);
         $this->assign(array(
             'item_date'                => current(explode(" ", $row['DATE_PUBL'])),
             'item'                     => $row,

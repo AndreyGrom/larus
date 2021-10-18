@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Июл 21 2021 г., 21:17
+-- Время создания: Окт 18 2021 г., 12:49
 -- Версия сервера: 5.7.27-30
 -- Версия PHP: 7.3.22
 
@@ -5162,7 +5162,7 @@ ALTER TABLE `agcms_blog_c`
 -- AUTO_INCREMENT для таблицы `agcms_blog_i`
 --
 ALTER TABLE `agcms_blog_i`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT для таблицы `agcms_catalog_c`

@@ -2,31 +2,13 @@
     <div class="form-group">
         <label for="title" class="col-sm-3 control-label">Дата публикации:</label>
         <div class="col-sm-9">
-            <input value="{$item.DATE_PUBL}" name="date" id="date" type="text" class="form-control" placeholder="">
-            <script type="text/javascript">
-                $(function() {
-                    $.datepicker.regional['ru'] = {
-                        closeText: 'Закрыть',
-                        prevText: '&#x3c;Пред',
-                        nextText: 'След&#x3e;',
-                        currentText: 'Сегодня',
-                        monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
-                            'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-                        monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
-                            'Июл','Авг','Сен','Окт','Ноя','Дек'],
-                        dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
-                        dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
-                        dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
-                        dateFormat: 'dd.mm.yy',
-                        firstDay: 1,
-                        isRTL: false
-
-                    };
-                    $.datepicker.setDefaults($.datepicker.regional['ru']);
-                    $('#date').datepicker();
-
-                });
-            </script>
+            <input required value="{$item.DATE_PUBL}" name="date_publ" type="text" class="datepicker form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title" class="col-sm-3 control-label">Дата изменения:</label>
+        <div class="col-sm-9">
+            <input required value="{$item.DATE_EDIT}" name="date_edit" type="text" class="datepicker form-control">
         </div>
     </div>
     <div class="form-group">
@@ -77,3 +59,28 @@
         </div>
     </div>
 </div>
+<script>
+    $(function() {
+        $(".datepicker").datepicker();
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: '&#x3c;Пред',
+            nextText: 'След&#x3e;',
+            currentText: 'Сегодня',
+            monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+                'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+            monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+                'Июл','Авг','Сен','Окт','Ноя','Дек'],
+            dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+            dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+            dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false
+
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+        $('#date').datepicker();
+
+    });
+</script>

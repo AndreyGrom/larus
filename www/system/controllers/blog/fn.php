@@ -54,25 +54,22 @@ function BlogGetPopular ($params, &$smarty) {
 
 function blog_latest_items ($params, &$smarty) {
     $items = array();
+    $sourse = $params['sourse'];
     if (isset($params['cid'])){
         $db = Database::getInstance();
+        $cid = $params['cid'];
         $sort = 'DATE_PUBL ASC';
         $sort = "ORDER BY $sort";
-        $limit = 10;
-        $sql = "SELECT * FROM `".db_pref."blog_i` WHERE `PARENT` AND `PUBLIC`=1 $sort";
-        $query = $db->query($sql);
-        if ($db->num_rows($query) > 0){
-            for ($i=0; $i < $db->num_rows($query); $i++) {
-                $row = $db->fetch_array($query);
-                $items[] = $row;
-            }
-        }
+        $limit = "LIMIT " . $params['limit'];
+        $sql = "SELECT * FROM `".db_pref."blog_i` WHERE `PARENT` LIKE ',%$cid%,' AND `PUBLIC`=1 $sort $limit";
+        $items = $db->select($sql);
     }
-    $smarty->assign('items_category',$items);
+    $smarty->assign($sourse, $items);
 }
 
 Smart::getInstance()->register_function("blog_categories", "BlogGetCategories");
 Smart::getInstance()->register_function("blog_pupular", "BlogGetPopular");
 Smart::getInstance()->register_function("other_items_blog", "print_other_items_blog");
+Smart::getInstance()->register_function("blog_items", "blog_latest_items");
 
 ?>

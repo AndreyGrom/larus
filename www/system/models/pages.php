@@ -15,7 +15,6 @@ class ModelPages extends Model {
         $content = $params['content'];
         $content = preg_replace( '/(width|height)="\d*"\s/', "", $content );
         $template = $params['template'];
-        $comments = $params['comments'];
         $publ = $params['publ'];
         $meta_title = $params['meta_title'];
         $meta_desc = $params['meta_description'];
@@ -29,13 +28,13 @@ class ModelPages extends Model {
             'META_TITLE' => $meta_title,
             'META_DESC' => $meta_desc,
             'META_KEYWORDS' => $meta_keywords,
-            'COMMENTS' => $comments,
             'PUBLIC' => $publ,
             'TEMPLATE' => $template,
             'DATE_EDIT' => $date
         );
 
         if ($id == 0){
+            $param['DATE_PUBL'] = $date;
             if ($this->db->insert($this->table_name, $param, true)){
                 $result = $this->db->last_id();
             }
@@ -47,6 +46,7 @@ class ModelPages extends Model {
             }
 
         }
+
         return $result;
     }
 

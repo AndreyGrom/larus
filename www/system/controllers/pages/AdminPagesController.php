@@ -139,7 +139,7 @@ class AdminPagesController extends AdminController {
             $this->SaveSettings();
         }
         $this->LoadModel('pages');
-        $this->pages = $this->ModelPages->GetPages();
+        $this->pages = $this->ModelPages->GetPages(array());
         $this->structure = $this->func->getStructure($this->pages);
         $this->ShowMenu();
 
