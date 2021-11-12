@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-10-18 12:51:32
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-10-28 18:32:16
          compiled from "D:\data\domains\provoda\www\system\controllers\blog\tpl\menu.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:451247240616d43a47976b9-91164182%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:2090135674617ac280501583-44251415%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '451247240616d43a47976b9-91164182',
+  'nocache_hash' => '2090135674617ac280501583-44251415',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_616d43a47c64c2_16989729',
+  'unifunc' => 'content_617ac28057a711_06199155',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_616d43a47c64c2_16989729')) {function content_616d43a47c64c2_16989729($_smarty_tpl) {?><div class="panel-group " role="tablist">
+<?php if ($_valid && !is_callable('content_617ac28057a711_06199155')) {function content_617ac28057a711_06199155($_smarty_tpl) {?><div class="panel-group " role="tablist">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
             <h4 class="panel-title">

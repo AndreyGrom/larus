@@ -15,6 +15,7 @@ class PagesController extends Controller {
         }
 
         if ($row){
+            $id = $row['ID'];
             $row['DATE_PUBL'] = $this->DateFormat($row["DATE_PUBL"]);
             $row['DATE_EDIT'] = $this->DateFormat($row["DATE_EDIT"]);
             $this->page_title = $row['TITLE'];
@@ -28,6 +29,16 @@ class PagesController extends Controller {
             if ($this->meta_description == ''){
                 $this->meta_description = mb_substr(strip_tags($row['CONTENT']), 0, 200, 'UTF-8');;
             }
+            if ($row['PARENT'] > 0){
+                $parent_id = $row['PARENT'];
+            }
+            $sub_pages_status = false;
+            $sub_pages = $this->ModelPages->GetPagesParent($id);
+            if (count($sub_pages) > 0){
+                $row['CONTENT'] = $sub_pages[0]['CONTENT'];
+                $sub_pages_status = true;
+            }
+
             if ($row['ID']>1){
                 $this->breadcrumbs = array(
                     array('text' => 'Главная', 'href' => '/'),
@@ -38,6 +49,9 @@ class PagesController extends Controller {
 
             $this->SetPath($this->module_alias.'/');
             $this->assign(array(
+                'page'             => $row,
+                'sub_pages'        => $sub_pages,
+                'sub_pages_status'        => $sub_pages_status,
                 'page_title'       => $row['TITLE'],
                 'page_content'     => $row['CONTENT'],
             ));

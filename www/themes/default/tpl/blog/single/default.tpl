@@ -97,7 +97,7 @@
                         {$comments}
                     </div>
                     <div class="col-md-12">
-                        <article class="panel panel-primary">
+                        <article class="panel panel-primary comment-form">
                             <div class="panel-heading">
                                 <h2 class="panel-title"><i class="fa fa-pencil"></i> Добавьте свой комментарий!</h2>
                             </div>

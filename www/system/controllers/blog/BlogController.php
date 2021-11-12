@@ -12,12 +12,16 @@ class BlogController extends Controller {
         $this->desc2 = '';
     }
     public function Index(){
+        //var_dump($_GET;
         if (!$this->config->BlogEnabled){
             $message = 'Модуль не активирован!<br/><a href="/">На главную</a>';
             $title = 'Модуль не активирован!';
             return $this->SetSystemPage($title, $message);
         }
         elseif (isset($this->get['tag'])){
+            $this->ShowItems();
+        }
+        elseif (isset($this->get['cats'])){
             $this->ShowItems();
         }
         elseif (count($this->query) == 2 && $this->query[1]=='tag'){
@@ -94,16 +98,36 @@ class BlogController extends Controller {
 
     public function ShowItems(){
         $sort = $this->config->BlogItemListSort;
+        $where = array();
+
+
         if(isset($this->get['tag'])){
             $tag = urldecode($this->get['tag']);
             $this->page_title = $tag;
-            $sql = "SELECT *, @id:=ID, (SELECT COUNT(*) FROM `".db_pref."comments` WHERE `CONTROLLER` = 'blog' AND `MATERIAL_ID` = @id) AS COMMENTS_COUNT FROM `".db_pref."blog_i`  WHERE `TAGS` LIKE '%,$tag,%' AND `PUBLIC`=1 ORDER BY `DATE_PUBL` $sort";
-        } elseif($this->cid==0){
+            $where[] = "TAGS LIKE '%,$tag,%' AND PUBLIC=1";
+            $sql = "SELECT *, @id:=ID, (SELECT COUNT(*) FROM `".db_pref."comments` WHERE `CONTROLLER` = 'blog' AND `MATERIAL_ID` = @id) AS COMMENTS_COUNT FROM `".db_pref."blog_i`  WHERE TAGS LIKE '%,$tag,%' AND PUBLIC=1 ORDER BY `DATE_PUBL` $sort";
+        } elseif($this->cid == 0){
+            $where[] = "`PUBLIC`=1";
             $sql = "SELECT *, @id:=ID, (SELECT COUNT(*) FROM `".db_pref."comments` WHERE `CONTROLLER` = 'blog' AND `MATERIAL_ID` = @id) AS COMMENTS_COUNT FROM `".db_pref."blog_i`  WHERE `PUBLIC`=1 ORDER BY `DATE_PUBL` $sort";
         } else {
+            $where[] = "PARENT LIKE '%,$this->cid,%' AND PUBLIC=1";
             $sql = "SELECT *, @id:=ID, (SELECT COUNT(*) FROM `".db_pref."comments` WHERE `CONTROLLER` = 'blog' AND `MATERIAL_ID` = @id) AS COMMENTS_COUNT FROM `".db_pref."blog_i`  WHERE `PARENT` LIKE '%,$this->cid,%' AND `PUBLIC`=1 ORDER BY `DATE_PUBL` $sort";
         }
 
+        $cats = array();
+        if (isset($this->get['cats'])){
+            $cats = explode(',', $this->get['cats']);
+            $where2 = array();
+            foreach ($cats as $c){
+                $where2[] = "PARENT LIKE '%,$c,%'";
+            }
+            $where[] = "(" . implode(" OR ", $where2) . ")";
+        }
+
+        if (count($where) > 0){
+            $where = " WHERE " . implode(' AND ', $where);
+        }
+        $sql = "SELECT *, @id:=ID, (SELECT COUNT(*) FROM ".db_pref."comments WHERE CONTROLLER = 'blog' AND MATERIAL_ID = @id) AS COMMENTS_COUNT FROM ".db_pref."blog_i $where ORDER BY DATE_PUBL $sort";
 
         $params = array(
             'sql' => $sql,
@@ -121,8 +145,8 @@ class BlogController extends Controller {
 
         if ($items){
             foreach ($items as &$item){
-                $item["DATE_PUBL"] = $this->DateFormat($item["DATE_PUBL"]);
-                $item["DATE_EDIT"] = $this->DateFormat($item["DATE_EDIT"]);
+                $item["DATE_PUBL"] = $this->DateFormat2($item["DATE_PUBL"]);
+                $item["DATE_EDIT"] = $this->DateFormat2($item["DATE_EDIT"]);
                 if ($item['SKIN']!==''){
                     $item['SKIN_NEW'] = Func::getInstance()->GetImage(UPLOAD_IMAGES_DIR.'blog/'.$item['SKIN'], $this->config->NewsImageWidthItemList,$this->config->NewsImageHeightItemList,'','blog');
                 }
@@ -133,6 +157,9 @@ class BlogController extends Controller {
         if ($this->meta_title == ''){
             $this->meta_title = $this->page_title.' - '. $this->config->SiteTitle;
         }
+        //$items['SHORT_CONTENT'] = strip_tags($items['SHORT_CONTENT']);
+        $categories = $this->GetCategories();
+
 
         $this->assign(array(
             'page_title'       => $this->page_title,
@@ -142,7 +169,10 @@ class BlogController extends Controller {
             'desc2'            => $this->desc2,
             'pagination'       => $pagination,
             'num_pages'        => $num_pages,
+            'categories' => $categories,
+            'cats' => $cats,
         ));
+
 
         /*            $this->breadcrumbs = array(
                         array('text' => 'Главная', 'href' => '/'),
@@ -150,14 +180,13 @@ class BlogController extends Controller {
                         array('text' => $item['TITLE'], 'href' => ''),
                     );*/
 
-        $this->SetPath('blog/list/');
-        if ($this->template == ''){
-            $this->template = 'default';
-        }
-        $this->content = $this->SetTemplate($this->template.'.tpl');
+        $this->SetPath('blog/');
+
+        $this->content = $this->SetTemplate('index.tpl');
     }
 
     public function ShowItem($id=0){;
+
         if ($id > 0){
             $sql = "SELECT * FROM `".db_pref."blog_i`  WHERE `ID` = '$id' AND `PUBLIC`=1 LIMIT 1";
         } else {
@@ -168,11 +197,12 @@ class BlogController extends Controller {
         if ($this->db->num_rows($query) > 0){
 
             $row = $this->db->fetch_array($query);
+
             $sql = "UPDATE `".db_pref."blog_i` SET VIEWS = VIEWS+1 WHERE ID = ".$row['ID'];
             $this->db->query($sql);
 
-            $row["DATE_PUBL"] = $this->DateFormat($row["DATE_PUBL"]);
-            $row["DATE_EDIT"] = $this->DateFormat($row["DATE_EDIT"]);
+            $row["DATE_PUBL"] = $this->DateFormat2($row["DATE_PUBL"]);
+            $row["DATE_EDIT"] = $this->DateFormat2($row["DATE_EDIT"]);
             $item = $row;
             $item['CONTENT'] = Func::getInstance()->syntax_filter( $item['CONTENT']);
 
@@ -279,7 +309,15 @@ class BlogController extends Controller {
                 }
             }
 
-
+            $nex_id = $item['ID'] + 1;
+            $prev_id = $item['ID'] - 1;
+            $sql = "SELECT * FROM agcms_blog_i WHERE ID = ";
+            if ($row = $this->db->select($sql . $nex_id)){
+                $next = $row[0];
+            }
+            if ($row = $this->db->select($sql . $prev_id)){
+                $prev = $row[0];
+            }
             $this->breadcrumbs = array(
                 array('text' => 'Главная', 'href' => '/'),
                 array('text' => $categories[0]['TITLE'], 'href' => '/blog/'.$categories[0]['ALIAS']),
@@ -299,11 +337,35 @@ class BlogController extends Controller {
                 'page_title'       => $this->page_title ,
                 'image_new'        => Func::getInstance()->GetImage(UPLOAD_IMAGES_DIR.'blog/'.$item['SKIN'], $this->config->BlogImageWidthItem,$this->config->BlogImageHeightItem,'','blog'),
                 'images'           => explode(",",$item['IMAGES']),
+                'next' => $next,
+                'prev' => $prev,
+                'categories' => $this->GetCategories(),
             ));
 
-            $this->SetPath('blog/single/');
-            $this->content = $this->SetTemplate($item['TEMPLATE'].'.tpl');
+            $this->SetPath('blog/');
+            $this->content = $this->SetTemplate('item.tpl');
         }
+    }
+
+    public function GetCategories($parent = 0){
+        $sql = "SELECT * FROM agcms_blog_c WHERE PARENT = $parent";
+        $items = $this->db->select($sql);
+        return $items;
+    }
+
+    public function GetTags(){
+        $sql = "SELECT TAGS FROM agcms_blog_i";
+        $rs = array();
+        if ($items = $this->db->select($sql)){
+            foreach ($items as $i){
+                if (trim($i) !== ""){
+                    $rs = array_merge($rs, explode(',', $i['TAGS']));
+                }
+            }
+            $rs = array_diff($rs, array(''));
+            $rs = array_unique($rs);
+        }
+
     }
 }
 ?>

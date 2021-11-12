@@ -1,4 +1,4 @@
-<form id="page-form" action="" method="post">
+<form id="page-form" action="" method="post" enctype="multipart/form-data">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title text-uppercase">
@@ -30,6 +30,29 @@
                     <label for="title" class="col-sm-3 control-label">Название:</label>
                     <div class="col-sm-9">
                         <input required value="{$page.TITLE}" name="title" id="title" type="text" class="form-control" placeholder="Введите название страницы">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="col-sm-3 control-label">Вводный текст:</label>
+                    <div class="col-sm-9">
+                        <input value="{$page.TITLE2}" name="title2" id="title2 " type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="template" class="col-sm-3 control-label">Изображение:</label>
+                    <div class="col-sm-4">
+                        <input name="image" id="image" type="file" class="" />
+                        <input type="hidden" name="old_image" value="{$page.IMAGE}"/>
+                        <p class="help-block">.jpg, .jpeg, .png, .gif</p>
+                    </div>
+                    <div class="col-sm-3">
+                        {if $page.IMAGE}
+                            <a target="_blank" class="fancybox" href="/upload/images/pages/{$page.IMAGE}">
+                                <img class="img-responsive" src="/upload/images/pages/{$page.IMAGE}" alt=""/>
+                            </a>
+                           {* <br/>
+                            <label><input name="delete_image" type="checkbox"/> Удалить</label>*}
+                        {/if}
                     </div>
                 </div>
                 <div class="form-group">

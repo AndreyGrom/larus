@@ -10,6 +10,7 @@ class ModelPages extends Model {
     function SavePage($params, $id = 0){
         $result = false;
         $title = $params['title'];
+        $title2 = $params['title2'];
         $parent = $params['parent'];
         $alias = ($params['alias']!=='')?$this->post['alias']:$this->func->TranslitURL($title);
         $content = $params['content'];
@@ -20,9 +21,11 @@ class ModelPages extends Model {
         $meta_desc = $params['meta_description'];
         $meta_keywords = $params['meta_keywords'];
         $date = time();
+
         $param = array(
             'PARENT' => $parent,
             'TITLE' => $title,
+            'TITLE2' => $title2,
             'ALIAS' => $alias,
             'CONTENT' => $content,
             'META_TITLE' => $meta_title,
@@ -32,6 +35,14 @@ class ModelPages extends Model {
             'TEMPLATE' => $template,
             'DATE_EDIT' => $date
         );
+
+        $upload_dir    = UPLOAD_IMAGES_DIR.'pages/';
+        $upload_file = $_FILES["image"];
+        $image = $this->func->UploadFile($upload_file['name'],$upload_file['tmp_name'], $upload_dir);
+        if ($image){
+            $param['IMAGE'] = $image;
+        }
+
 
         if ($id == 0){
             $param['DATE_PUBL'] = $date;
@@ -64,6 +75,11 @@ class ModelPages extends Model {
             }
         }
         return $result;
+    }
+
+    public function GetPagesParent($parent_id){
+        $sql = "SELECT * FROM agcms_pages WHERE PARENT = $parent_id";
+        return $this->db->select($sql);
     }
 
     public function GetPage($id){
