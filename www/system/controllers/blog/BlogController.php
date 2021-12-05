@@ -12,7 +12,7 @@ class BlogController extends Controller {
         $this->desc2 = '';
     }
     public function Index(){
-        //var_dump($_GET;
+
         if (!$this->config->BlogEnabled){
             $message = 'Модуль не активирован!<br/><a href="/">На главную</a>';
             $title = 'Модуль не активирован!';
@@ -21,7 +21,7 @@ class BlogController extends Controller {
         elseif (isset($this->get['tag'])){
             $this->ShowItems();
         }
-        elseif (isset($this->get['cats'])){
+        elseif (isset($this->get['cats']) && count($this->get) == 1){
             $this->ShowItems();
         }
         elseif (count($this->query) == 2 && $this->query[1]=='tag'){
@@ -31,7 +31,8 @@ class BlogController extends Controller {
             $this->ShowItem($id = $this->query[0]);
         }
         elseif ($this->query && !isset($this->get['page'])){ // если есть алиас
-            $this->alias = end($this->query);
+            //$this->alias = end($this->query);
+            $this->alias = $this->query[0];
             $sql = "SELECT * FROM `".db_pref."blog_c` WHERE `ALIAS` = '$this->alias' AND `PUBLIC`=1 LIMIT 1";
             $query = $this->db->query($sql);
             if ($this->db->num_rows($query) > 0){ // Если алиас принадлежит категории
@@ -99,7 +100,7 @@ class BlogController extends Controller {
     public function ShowItems(){
         $sort = $this->config->BlogItemListSort;
         $where = array();
-
+        $url_plus = '';
 
         if(isset($this->get['tag'])){
             $tag = urldecode($this->get['tag']);
@@ -107,7 +108,7 @@ class BlogController extends Controller {
             $where[] = "TAGS LIKE '%,$tag,%' AND PUBLIC=1";
             $sql = "SELECT *, @id:=ID, (SELECT COUNT(*) FROM `".db_pref."comments` WHERE `CONTROLLER` = 'blog' AND `MATERIAL_ID` = @id) AS COMMENTS_COUNT FROM `".db_pref."blog_i`  WHERE TAGS LIKE '%,$tag,%' AND PUBLIC=1 ORDER BY `DATE_PUBL` $sort";
         } elseif($this->cid == 0){
-            $where[] = "`PUBLIC`=1";
+            //$where[] = "`PUBLIC`=1";
             $sql = "SELECT *, @id:=ID, (SELECT COUNT(*) FROM `".db_pref."comments` WHERE `CONTROLLER` = 'blog' AND `MATERIAL_ID` = @id) AS COMMENTS_COUNT FROM `".db_pref."blog_i`  WHERE `PUBLIC`=1 ORDER BY `DATE_PUBL` $sort";
         } else {
             $where[] = "PARENT LIKE '%,$this->cid,%' AND PUBLIC=1";
@@ -115,12 +116,22 @@ class BlogController extends Controller {
         }
 
         $cats = array();
+        $categories = $this->GetCategories();
+
         if (isset($this->get['cats'])){
+            $url_plus .= "/cats=" . $this->get['cats'];
             $cats = explode(',', $this->get['cats']);
             $where2 = array();
             foreach ($cats as $c){
                 $where2[] = "PARENT LIKE '%,$c,%'";
             }
+            $where[] = "(" . implode(" OR ", $where2) . ")";
+        } else{
+            $where2 = array();
+            foreach ($categories as $c){
+                $where2[] = "PARENT LIKE '%," . $c['ID'] . ",%'";
+            }
+            $where2[] = "PARENT LIKE '%,,%'";
             $where[] = "(" . implode(" OR ", $where2) . ")";
         }
 
@@ -158,7 +169,7 @@ class BlogController extends Controller {
             $this->meta_title = $this->page_title.' - '. $this->config->SiteTitle;
         }
         //$items['SHORT_CONTENT'] = strip_tags($items['SHORT_CONTENT']);
-        $categories = $this->GetCategories();
+
 
 
         $this->assign(array(
@@ -171,6 +182,7 @@ class BlogController extends Controller {
             'num_pages'        => $num_pages,
             'categories' => $categories,
             'cats' => $cats,
+            'url_plus' => $url_plus,
         ));
 
 
@@ -186,7 +198,6 @@ class BlogController extends Controller {
     }
 
     public function ShowItem($id=0){;
-
         if ($id > 0){
             $sql = "SELECT * FROM `".db_pref."blog_i`  WHERE `ID` = '$id' AND `PUBLIC`=1 LIMIT 1";
         } else {
@@ -325,6 +336,11 @@ class BlogController extends Controller {
             );
 
 
+            $cats = array();
+            if (isset($this->get['cats'])){
+                $cats = explode(',', $this->get['cats']);
+            }
+
 
 
             $this->assign(array(
@@ -340,6 +356,7 @@ class BlogController extends Controller {
                 'next' => $next,
                 'prev' => $prev,
                 'categories' => $this->GetCategories(),
+                'cats' => $cats,
             ));
 
             $this->SetPath('blog/');

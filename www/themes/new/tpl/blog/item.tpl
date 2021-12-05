@@ -11,6 +11,40 @@
             {if $prev}
             <a href="/blog/{$prev.ALIAS}">Предыдущая статья <img src="{$theme_dir}img/arrow-left.png" class="pull-right" alt=""></a>
             {/if}
+            <div class="filter-box sv-filter-box">
+                <img id="sv-filter-box" class="pull-right" src="{$theme_dir}img/eq.png" alt="">
+                <div class="clearbox"></div>
+                <form method="post" id="filter-form">
+                    <ul class="">
+                        {section name=i loop=$categories}
+                            <li>
+                                <input class="custom-checkbox" id="filter_{$categories[i].ID}"
+                                    {if !$cats}
+                                        checked
+                                    {else}
+                                        {section name=j loop=$cats}
+                                            {if $cats[j] == $categories[i].ID}checked{/if}
+                                        {/section}
+                                    {/if}
+                                    name="{$categories[i].ID}" value="{$categories[i].ID}" type="checkbox">
+                            <label for="filter_{$categories[i].ID}">{$categories[i].TITLE}</label>
+                            </li>
+                        {/section}
+                    </ul>
+                    <button name="filter-form" type="submit" class="btn btn-default">Применить</button>
+                </form>
+                <script>
+                    $("#filter-form").submit(function(e){
+                        e.preventDefault();
+                        var url = '/blog/cats='
+                        $('#filter-form input:checkbox:checked').each(function(){
+                            url += $(this).val() + ",";
+                        });
+                        document.location.href = url;
+                        return false;
+                    });
+                </script>
+            </div>
         </div>
         <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="blog-content-right">
@@ -50,6 +84,15 @@
     </div>
 </div>
 
-
+<script>
+    $("#sv-filter-box").click(function(){
+        var p = $(this).parent();
+        if (p.hasClass("sv-filter-box")){
+            p.removeClass("sv-filter-box");
+        } else{
+            p.addClass("sv-filter-box");
+        }
+    });
+</script>
 
 {include file="../common/footer.tpl"}

@@ -46,6 +46,7 @@
     <script type="text/javascript" src="{$theme_dir}slick/slick.min.js"></script>
     <link rel="stylesheet" href="{$theme_dir}css/style.css">
     <script type="text/javascript" src="/system/plugins/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{$theme_dir}js/main.js"></script>
     {section name=i loop=$js}
         <script  type="text/javascript" src="{$js[i]}"></script>
     {/section}
@@ -72,8 +73,8 @@
                             <li><a href="/history">История</a></li>
                             <li><a href="/texnology">Технология</a></li>
                             <li><a href="/practice ">Практика</a></li>
-                            <li><a href="/catalog">Продукция</a></li>
-                            <li><a href="/blog/blog">Блог</a></li>
+                            <li><a href="/shop">Продукция</a></li>
+                            <li><a href="/blog">Блог</a></li>
                         </ul>
                     </div>
                 </div>

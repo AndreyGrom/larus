@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-10-28 18:32:35
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-05 12:43:41
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1125350525617ac293ee18c0-10852104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a6e34527bf2ec5d9f3ce0e28aebb2ab960f63347' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\common\\header.tpl',
-      1 => 1635425937,
+      1 => 1638697413,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_617ac294085c72_56357127',
   'variables' => 
   array (
     'meta_title' => 0,
@@ -29,8 +31,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'main' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_617ac294085c72_56357127',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_617ac294085c72_56357127')) {function content_617ac294085c72_56357127($_smarty_tpl) {?><!doctype html>
 <html lang="en">
@@ -126,6 +126,10 @@ css/style.css">
     <?php echo '<script'; ?>
  type="text/javascript" src="/system/plugins/jquery.cookie.js"><?php echo '</script'; ?>
 >
+    <?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+js/main.js"><?php echo '</script'; ?>
+>
     <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['js']->value) ? count($_loop) : max(0, (int) $_loop); unset($_loop);
@@ -202,8 +206,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
                             <li><a href="/history">История</a></li>
                             <li><a href="/texnology">Технология</a></li>
                             <li><a href="/practice ">Практика</a></li>
-                            <li><a href="/catalog">Продукция</a></li>
-                            <li><a href="/blog/blog">Блог</a></li>
+                            <li><a href="/shop">Продукция</a></li>
+                            <li><a href="/blog">Блог</a></li>
                         </ul>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-11-12 14:23:44
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-05 12:24:07
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\blog\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1261414704617ac293e78122-63633471%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b3a1a2dacedacbbb1e13ff6a59358213555cb801' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\blog\\index.tpl',
-      1 => 1636716219,
+      1 => 1638696243,
       2 => 'file',
     ),
   ),
@@ -19,10 +19,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_617ac293eca1b8_94632513',
   'variables' => 
   array (
+    'theme_dir' => 0,
     'categories' => 0,
     'cats' => 0,
     'items' => 0,
-    'theme_dir' => 0,
+    'url_plus' => 0,
     'pagination' => 0,
   ),
   'has_nocache_code' => false,
@@ -30,8 +31,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php if ($_valid && !is_callable('content_617ac293eca1b8_94632513')) {function content_617ac293eca1b8_94632513($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("../common/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div class="blog-top">
+    <img id="show-filter"  src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+img/eq.png" alt="" class="pull-left" style="margin-left: 20px;s">
     <div class="container">
         <form method="get" id="filter-form" class="form-inline tags-form-top">
+
             <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['categories']->value) ? count($_loop) : max(0, (int) $_loop); unset($_loop);
@@ -57,7 +61,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
             <div class="checkbox">
-                <label><input
+                <input class="custom-checkbox" id="filter_<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
+"
                             <?php if (!$_smarty_tpl->tpl_vars['cats']->value) {?>
                                 checked
                             <?php } else { ?>
@@ -90,12 +95,37 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smart
                             <?php }?>
                             name="<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
 " value="<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
-" type="checkbox"> <?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE'];?>
-</label>
+" type="checkbox">
+                <label for="filter_<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
+"">    <?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE'];?>
+
+                </label>
             </div>
             <?php endfor; endif; ?>
             <button name="filter-form" type="submit" class="btn btn-default">Применить</button>
+            <img id="close-filter" src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+img/close-filter.png" alt="" class="pull-right">
         </form>
+        <?php echo '<script'; ?>
+>
+            $("#filter-form").submit(function(e){
+                e.preventDefault();
+                var url = '/blog/cats='
+                $('#filter-form input:checkbox:checked').each(function(){
+                    url += $(this).val() + ",";
+                });
+                document.location.href = url;
+                return false;
+            });
+            $("#close-filter, #show-filter").click(function () {
+                if ($(".blog-top").hasClass("hide-filter")){
+                    $(".blog-top").removeClass("hide-filter");
+                } else {
+                    $(".blog-top").addClass("hide-filter");
+                }
+            });
+        <?php echo '</script'; ?>
+>
     </div>
 </div>
 
@@ -127,14 +157,16 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
                 <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="blog-item" onclick="document.location.href = '/blog/<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ALIAS'];?>
+                    <div class="blog-item" onclick="document.location.href = '/blog/<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ALIAS'];
+echo $_smarty_tpl->tpl_vars['url_plus']->value;?>
 '">
                         <div class="blog-item-title">
                             <?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE'];?>
 
                         </div>
                         <div class="blog-item-img">
-                            <a href="/blog/<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ALIAS'];?>
+                            <a href="/blog/<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ALIAS'];
+echo $_smarty_tpl->tpl_vars['url_plus']->value;?>
 ">
                                 <img class="img-responsive" src="/upload/images/blog/<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SKIN']) {
 echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SKIN'];
@@ -159,19 +191,7 @@ img/rect-arrow-left.png" alt=""></div>
     </div>
 </div>
 
-<?php echo '<script'; ?>
->
-    $("#filter-form").submit(function(e){
-        e.preventDefault();
-        var url = '/blog/cats='
-        $('#filter-form input:checkbox:checked').each(function(){
-            url += $(this).val() + ",";
-        });
-        document.location.href = url;
-        return false;
-    });
-<?php echo '</script'; ?>
->
+
 
 <?php echo $_smarty_tpl->getSubTemplate ("../common/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 <?php }} ?>

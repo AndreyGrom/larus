@@ -222,7 +222,7 @@ class AdminBlogController extends AdminController {
             $where = "WHERE `PARENT` LIKE '%,$parent,%'";
         }
 
-        $sql = "SELECT * FROM `".db_pref."blog_i` $where ORDER BY `ID` DESC $limit";
+        $sql = "SELECT * FROM `".db_pref."blog_i` $where ORDER BY DATE_PUBL DESC $limit";
         $query = $this->db->query($sql);
         for ($i=0; $i < $this->db->num_rows($query); $i++) {
             $row = $this->db->fetch_array($query);
