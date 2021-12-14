@@ -40,15 +40,7 @@ class AdminShopController extends AdminController {
         $this->Head("?c=shop&act=settings");
     }
     public function SaveCategory(){
-        $title            = $this->db->input($this->post['c_title']);
-        $desc             = $this->db->input($this->post['c_desc']);
-        $desc2            = $this->db->input($this->post['c_desc2']);
-        $parent           = $this->db->input($this->post['parent']);
         $alias            = ($this->post['alias']!=='')?$this->post['alias']:$this->func->TranslitURL($title);
-        $template         = $this->db->input($this->post['template']);
-        $publ             = $this->post['publ'];
-        $meta_desc        = $this->db->input($this->post['meta_description']);
-        $meta_keywords    = $this->db->input($this->post['meta_keywords']);
         $delete_image     = $this->post['delete_image'];
         $old_image        = $this->post['old_image'];
 
@@ -60,41 +52,36 @@ class AdminShopController extends AdminController {
         if ($this->db->num_rows($query) == 0){
             $upload_path = UPLOAD_IMAGES_DIR.'shop/';
             $image = Func::getInstance()->UploadFile($_FILES["image"]['name'],$_FILES["image"]['tmp_name'], $upload_path);
-
+            $params = array(
+                'PARENT' => $this->post['parent'],
+                'TITLE' => $this->post['title'],
+                'TITLE2' => $this->post['title2'],
+                'DESC' => $this->post['desc'],
+                'DESC2' => $this->post['desc2'],
+                'ALIAS' => $alias,
+                'META_DESC' => $this->post['meta_desc'],
+                'META_KEYWORDS' => $this->post['meta_keywords'],
+            );
             if ($this->act == 'new_c'){
-                $sql = "
-                    INSERT INTO `".db_pref."shop_c` (
-                    `PARENT`,`TITLE`, `DESC`, `DESC2`, `ALIAS`, `META_DESC`,`META_KEYWORDS`, `PUBLIC`,`TEMPLATE`, `POSITION`, `IMAGE`)
-                    VALUES
-                    ('$parent','$title','$desc','$desc2', '$alias','$meta_desc','$meta_keywords','$publ','$template','99999','$image')";
-                $query = $this->db->query($sql);
+
+                $params['IMAGE'] = $image;
+                $this->db->insert('agcms_shop_c', $params);
                 $this->cid = $this->db->last_id();
             }else{
-                if ($image!=='') {
-                    $img_upd = ", `IMAGE` = '$image'";
+
+                if ($image) {
+                    $params['IMAGE'] = $image;
                     if (!is_dir($old_image) && file_exists($old_image)){  // если есть новое изображение, то удаляем прежнее
                         unlink($old_image);
                     }
                 }
                 if ($delete_image) {
-                    $img_upd = ", `IMAGE` = ''";
+                    $params['IMAGE'] = '';
                     if (file_exists($old_image) && file_exists($old_image)){
                         unlink($old_image);
                     }
                 }
-                $sql = "UPDATE `".db_pref."shop_c` SET
-                `PARENT` = '$parent',
-                `TITLE` = '$title',
-                `DESC` = '$desc',
-                `DESC2` = '$desc2',
-                `ALIAS` = '$alias',
-                `META_DESC` = '$meta_desc',
-                `META_KEYWORDS` = '$meta_keywords',
-                `PUBLIC` = '$publ',
-                `TEMPLATE` = '$template'
-                 $img_upd
-                 WHERE `ID` = $this->cid";
-                $query = $this->db->query($sql);
+                $this->db->update('agcms_shop_c', $params, "ID = " . $this->cid);
             }
             $this->Head("?c=shop&cid=$this->cid");
         } else {
@@ -398,6 +385,7 @@ class AdminShopController extends AdminController {
     }
     public function ShowCategory($row){
         $this->assign(array(
+            'item' => $row,
             'category_id'              => $this->cid,
             'category_title'           => isset($title)    ?   $title    :    $row['TITLE'],
             'category_desc'            => isset($desc)     ?   $desc     :    $row['DESC'],
@@ -520,7 +508,7 @@ class AdminShopController extends AdminController {
     public function Index(){
         $this->SetPlugins();
         $this->page_title = 'Магазин';
-        if (isset($this->post['c_title']) && trim($this->post['c_title'])!==''){
+        if (isset($this->post['save-category'])){
             $this->SaveCategory();
         }
         /*добавление/редактирование материала*/
