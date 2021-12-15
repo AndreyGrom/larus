@@ -829,6 +829,32 @@ filter-box button{
     text-decoration: underline;
     color: #000000;
 }
+#length{
+    margin-bottom: 20px;
+}
+#length, #raz{
+    appearance: none;
+    overflow: hidden;
+    background: url('../img/plus.png') no-repeat right;
+    background-position: 98% center;
+    border-radius: 0;
+    border: 1px solid #F2C897;
+}
+.btn-minus, #count, .btn-plus{
+    background: none;
+}
+#add-to-cart{
+    background: #F2C897;
+    border-radius: 0;
+    width: 100%;
+    text-align: center;
+    border: none;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    color: #312D2A;
+    padding: 8px;
+}
 @media (max-width: 767px) {
     /* стили для xs-устройств */
     #navbar-main{

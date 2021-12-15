@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-05 12:43:41
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-15 15:12:22
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1125350525617ac293ee18c0-10852104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a6e34527bf2ec5d9f3ce0e28aebb2ab960f63347' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\common\\header.tpl',
-      1 => 1638697413,
+      1 => 1639570270,
       2 => 'file',
     ),
   ),
@@ -102,6 +102,8 @@ img/logo_social2.jpg<?php }?>"/>
 
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+css/font-awesome.min.css">
     <?php echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 js/jquery-1.9.1.min.js"><?php echo '</script'; ?>

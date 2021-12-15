@@ -36,6 +36,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
 
     <link rel="stylesheet" href="{$theme_dir}css/bootstrap.min.css">
+    <link rel="stylesheet" href="{$theme_dir}css/font-awesome.min.css">
     <script type="text/javascript" src="{$theme_dir}js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="{$theme_dir}js/bootstrap.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
