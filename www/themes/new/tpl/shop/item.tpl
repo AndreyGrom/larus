@@ -41,36 +41,15 @@
             <div class="col-sm-8">
                 <div class="row">
                     <div class="col-sm-6 category-image-item">
-                        <img class="img-responsive" src="/upload/images/shop/{$category.IMAGE}" alt="">
+                        <img class="img-responsive" src="/upload/images/shop/{$item.SKIN}" alt="">
                     </div>
                     <div class="col-sm-6 category-desc">
-                        <p class="category-title">{$category.TITLE}</p>
+                        <p class="category-title">{$item.TITLE}</p>
                         <p>{$category.DESC}</p>
                     </div>
                 </div>
-                <div class="more-lines">
-                    <a href="#more-lines">Больше информации о линейке</a>
-                </div>
-                <div class="shop-items">
-                    <div class="row row-flex">
-                        {section name=k loop=$items}
-                            <div class="col-sm-4">
-                                <div class="shop-item">
-                                    <div class="shop-item-image">
-                                        <a href="/shop/{$items[k].ALIAS}">
-                                            <img class="img-responsive" src="/upload/images/shop/{$items[k].SKIN}" alt="">
-                                        </a>
-                                    </div>
+                <p id="more-lines">{$item.CONTENT}</p>
 
-                                    <div class="pull-left">{round($items[k].LEN_PRICE)} &#8381;/{$items[k].LEN|replace:'.':','} м.</div>
-                                    <div class="pull-right"><a href="/shop/{$items[k].ALIAS}"><img src="{$theme_dir}img/add-cart.png" alt=""></a></div>
-                                    <div class="clearfix"></div>
-                                    <a href="/shop{$items[k].ALIAS}">{$items[k].TITLE}</a>
-                                </div>
-                            </div>
-                        {/section}
-                    </div>
-                </div>
                 <hr>
                 <p id="more-lines">{$category.DESC2}</p>
             </div>

@@ -671,6 +671,7 @@ filter-box button{
 .shop-content .category-name p{
     text-align: center;
 }
+
 .shop-content .category-name > ul{
     list-style-type: none;
     margin-top: 30px;
@@ -738,6 +739,18 @@ filter-box button{
     font-weight: 300;
     font-size: 16px;
     margin-bottom: 30px;
+    text-transform: uppercase;
+    position: relative;
+}
+.shop-content .category-desc .category-title::before{
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 25px;
+    background-image: url("../img/quote-left.png");
+    top: -3px;
+    left: -30px;
+
 }
 .cart-btn{
     font-size: 10px;
@@ -798,9 +811,23 @@ filter-box button{
 .shop-items .shop-item{
     margin-bottom: 15px;
 }
+.shop-items .shop-item .shop-item-image{
+    width: 230px;
+    height: 117px;
+    overflow: hidden;
+}
 .shop-items .shop-item a{
     font-size: 11px;
     color: #312D2A;
+}
+.more-lines{
+    margin-bottom: 10px;
+}
+.more-lines a{
+    font-size: 12px;
+    line-height: 15px;
+    text-decoration: underline;
+    color: #000000;
 }
 @media (max-width: 767px) {
     /* стили для xs-устройств */
@@ -915,6 +942,10 @@ filter-box button{
         padding-left: 20px;
         padding-right: 20px;
     }
+    .shop-items .shop-item .shop-item-image{
+        width: 136px;
+        height: 70px;
+    }
 }
 @media (min-width: 991px) and (max-width: 1199px) {
     /* стили для md-устройств */
@@ -946,6 +977,10 @@ filter-box button{
     }
     .rect-top-2 {
         font-size: 20px;
+    }
+    .shop-items .shop-item .shop-item-image{
+        width: 185px;
+        height: 95px;
     }
 }
 @media (min-width: 1200px) {
