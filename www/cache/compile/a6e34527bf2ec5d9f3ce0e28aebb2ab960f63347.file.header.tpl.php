@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-15 15:12:22
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-16 10:53:04
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1125350525617ac293ee18c0-10852104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a6e34527bf2ec5d9f3ce0e28aebb2ab960f63347' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\common\\header.tpl',
-      1 => 1639570270,
+      1 => 1639641180,
       2 => 'file',
     ),
   ),
@@ -114,7 +114,9 @@ js/bootstrap.min.js"><?php echo '</script'; ?>
 >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
@@ -233,7 +235,7 @@ img/message.png" alt=""></a></li>
 img/signin.png" alt=""></a></li>
                     </ul>
                     <ul class="hidden-sm hidden-xs nav navbar-nav">
-                        <li><a href="#"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+                        <li><a href="/shop/cart"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/cart.png" alt=""></a></li>
                     </ul>
                 </div>

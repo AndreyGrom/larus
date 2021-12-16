@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-14 16:20:29
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-16 10:31:01
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\shop\main.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:193756753961af426848c2c0-59381438%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2295d8ae0c661243df76caa495a011665b8a7696' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\shop\\main.tpl',
-      1 => 1639488027,
+      1 => 1639639855,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 
 <div class="container shop-content">
-    <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
+    <div class="row">
+        <div class="col-sm-9 no-p-r">
+            <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['i'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['i']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['name'] = 'i';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['categories']->value) ? count($_loop) : max(0, (int) $_loop); unset($_loop);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['show'] = true;
@@ -53,14 +55,14 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-        <div class="category-row">
-            <div class="row row-flex">
-                <div class="col-sm-2 category-name">
-                    <p><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE'];?>
+                <div class="category-row <?php if ($_smarty_tpl->getVariable('smarty')->value['section']['i']['index']==0) {?>category-row-open<?php }?>">
+                    <div class="row row-flex">
+                        <div class="col-sm-2 category-name">
+                            <p><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE'];?>
 </p>
-                    <?php if ($_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB']) {?>
-                        <ul>
-                            <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['j'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['j']);
+                            <?php if ($_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB']) {?>
+                                <ul>
+                                    <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['j'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['j']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['name'] = 'j';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB']) ? count($_loop) : max(0, (int) $_loop); unset($_loop);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show'] = true;
@@ -84,37 +86,37 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total']);
 ?>
-                                <li><a href="/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['ALIAS'];?>
+                                        <li><a href="/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['ALIAS'];?>
 "><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['TITLE'];?>
 </a></li>
-                            <?php endfor; endif; ?>
-                        </ul>
-                    <?php }?>
-                    <div class="cart-btn">
-                        <img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+                                    <?php endfor; endif; ?>
+                                </ul>
+                            <?php }?>
+                            <div class="cart-btn">
+                                <img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/cart2.png" alt="">
-                        <span>Купить <br> в один клик</span>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="category-image" style="background-image: url(/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['IMAGE'];?>
+                                <span>Купить <br> в один клик</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="category-image" style="background-image: url(/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['IMAGE'];?>
 );"></div>
-                </div>
-                <div class="col-sm-4 category-desc">
-                    <p class="category-title"><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE2'];?>
+                        </div>
+                        <div class="col-sm-5 category-desc">
+                            <p class="category-title"><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE2'];?>
 </p>
-                    <p><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['DESC'];?>
+                            <p><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['DESC'];?>
 </p>
-                    <a href="#" class="more-btn">ПОДРОБНЕЕ...</a>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div class="row row-flex category-desc-2">
-                <div class="col-sm-2 category-desc-2-col"></div>
-                <div class="col-sm-8 category-desc-2-col">
-                    <?php if ($_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB']) {?>
-                        <div class="row">
-                            <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['j'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['j']);
+                            <a href="#" class="more-btn">ПОДРОБНЕЕ...</a>
+                        </div>
+
+                    </div>
+                    <div class="row row-flex category-desc-2">
+                        <div class="col-sm-2 category-desc-2-col"></div>
+                        <div class="col-sm-10 category-desc-2-col">
+                            <?php if ($_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB']) {?>
+                                <div class="row">
+                                    <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['j'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['j']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['name'] = 'j';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB']) ? count($_loop) : max(0, (int) $_loop); unset($_loop);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['show'] = true;
@@ -138,27 +140,31 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['j']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['total']);
 ?>
-                                <div class="col-sm-4">
-                                    <a href="/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['ALIAS'];?>
+                                        <div class="col-sm-4">
+                                            <a href="/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['ALIAS'];?>
 ">
-                                        <img class="img-responsive" src="/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['IMAGE'];?>
+                                                <img class="img-responsive" src="/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['IMAGE'];?>
 " alt="">
-                                    </a>
-                                    <p><a href="/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['ALIAS'];?>
+                                            </a>
+                                            <p><a href="/shop/<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['ALIAS'];?>
 "><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/vector-right.png" alt=""> <?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB'][$_smarty_tpl->getVariable('smarty')->value['section']['j']['index']]['TITLE'];?>
 </a></p>
+                                        </div>
+                                    <?php endfor; endif; ?>
                                 </div>
-                            <?php endfor; endif; ?>
-                        </div>
-                    <?php }?>
-                    <hr>
-                    <p><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['DESC2'];?>
+                            <?php }?>
+                            <hr>
+                            <p><?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['DESC2'];?>
 </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            <?php endfor; endif; ?>
         </div>
-    <?php endfor; endif; ?>
+        <?php echo $_smarty_tpl->getSubTemplate ("./right-col.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+    </div>
 </div>
 
 <?php echo '<script'; ?>

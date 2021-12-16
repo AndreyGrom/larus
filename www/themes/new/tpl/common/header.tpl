@@ -41,7 +41,9 @@
     <script type="text/javascript" src="{$theme_dir}js/bootstrap.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{$theme_dir}slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="{$theme_dir}slick/slick-theme.css"/>
     <script type="text/javascript" src="{$theme_dir}slick/slick.min.js"></script>
@@ -95,7 +97,7 @@
                         <li class="hidden-sm hidden-xs"><a href="#"><img src="{$theme_dir}img/signin.png" alt=""></a></li>
                     </ul>
                     <ul class="hidden-sm hidden-xs nav navbar-nav">
-                        <li><a href="#"><img src="{$theme_dir}img/cart.png" alt=""></a></li>
+                        <li><a href="/shop/cart"><img src="{$theme_dir}img/cart.png" alt=""></a></li>
                     </ul>
                 </div>
             </div>

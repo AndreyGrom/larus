@@ -134,26 +134,6 @@ class ShopController extends Controller {
         $this->content = $this->SetTemplate('item.tpl');
     }
 
-    public function Index(){
-        $this->GetCategories();
-        $this->assign(array(
-            'categories'  => $this->categories,
-        ));
-        if (count($this->get) > 0){
-            if ($this->category = $this->GetCategory($this->query[0])){
-                $this->ShowCategory();
-            } else {
-                $this->ShowItem();
-            }
-        } else{
-            $this->ShowMainPage();
-        }
-
-        return $this->content;
-    }
-
-
-
     public function ShowCart(){
         $itog = 0;
         $cart = json_decode($_COOKIE['cart']);
@@ -169,5 +149,60 @@ class ShopController extends Controller {
         $this->SetPath('shop/');
         $this->content = $this->SetTemplate('cart.tpl');
     }
+
+    public function AjaxCart(){
+        $act = $this->post['act'];
+        $id = $this->post['id'];
+        $rs = '';
+        if ($act == 'GetLin'){
+            $rs .= '<option value="0">Выбрать линейку</option>';
+            foreach ($this->categories as $category) {
+                if ($category['ID'] == $id){
+                    foreach ($category['SUB'] as $category2) {
+                        $rs .= '<option value="' . $category2['ID'] . '">' . $category2['TITLE'] . '</option>';
+                    }
+                }
+            }
+        }
+        if ($act == 'GetType'){
+            $rs .= '<option value="0">Выбрать тип кабеля</option>';
+            $items = $this->GetItems($id);
+            foreach ($items as $i) {
+                $rs .= '<option value="' . $i['ID'] . '">' . $i['TITLE'] . '</option>';
+            }
+        }
+        echo $rs;
+        exit;
+    }
+
+    public function Index(){
+        $this->GetCategories();
+        $this->assign(array(
+            'categories'  => $this->categories,
+        ));
+
+        if (isset($this->post['act'])){
+            $this->AjaxCart();
+        }
+
+        if (count($this->get) > 0){
+            if ($this->category = $this->GetCategory($this->query[0])){
+                $this->ShowCategory();
+            } elseif (isset($this->get['cart'])){
+                $this->ShowCart();
+            }
+            else {
+                $this->ShowItem();
+            }
+        } else{
+            $this->ShowMainPage();
+        }
+
+        return $this->content;
+    }
+
+
+
+
 }
 ?>
