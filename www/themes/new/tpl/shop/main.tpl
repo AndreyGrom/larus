@@ -18,7 +18,7 @@
                             {/if}
                             <div class="cart-btn">
                                 <img src="{$theme_dir}img/cart2.png" alt="">
-                                <span>Купить <br> в один клик</span>
+                                <a href="/shop/cart/">Купить <br> в один клик</a>
                             </div>
                         </div>
                         <div class="col-sm-5">

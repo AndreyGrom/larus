@@ -12,6 +12,7 @@
                                 {if $categories[i].SUB[j].ID == $category.ID}
                                     <div class="category-name">
                                         <p><a href="/shop/{$category.ALIAS}"><img src="{$theme_dir}img/quote-left.png" alt=""></a> {$categories[i].TITLE}</p>
+                                        <input type="hidden" id="ser" value="{$categories[i].ID}">
                                         {if $categories[i].SUB}
                                             <ul style="padding-left: 15px">
                                                 {section name=j loop=$categories[i].SUB}
@@ -33,7 +34,7 @@
                                         {/if}
                                         <div class="cart-btn">
                                             <img src="{$theme_dir}img/cart2.png" alt="">
-                                            <span>Купить <br> в один клик</span>
+                                            <a href="/shop/cart/">Купить <br> в один клик</a>
                                         </div>
                                     </div>
                                 {/if}
@@ -47,12 +48,12 @@
                                     <img class="img-responsive" src="/upload/images/shop/{$item.SKIN}" alt="">
                                 </div>
                                 <div class="col-sm-6 category-desc">
-                                    <p class="category-title">{$item.TITLE}</p>
+                                    <p class="category-title">{$item.MODEL}</p>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <select id="length" class="form-control">
                                                 {section name=i loop=$len}
-                                                    <option value="{$len[i].PRICE}">Длина: {$len[i].LEN} м. {$len[i].PRICE} руб.</option>
+                                                    <option data-id="{$len[i].ID}" value="{$len[i].PRICE}">Длина: {$len[i].LEN} м. {$len[i].PRICE} &#8381;</option>
                                                 {/section}
                                             </select>
                                         </div>
@@ -60,7 +61,7 @@
                                             <select id="raz" class="form-control">
                                                 <option value="0">Дополнительный разъем</option>
                                                 {section name=i loop=$raz}
-                                                    <option value="{$raz[i].PRICE}">{$raz[i].SNAME} {$raz[i].SCAPT} {$raz[i].PRICE} руб.</option>
+                                                    <option data-id="{$raz[i].ID}" value="{$raz[i].PRICE}">{$raz[i].SNAME} {$raz[i].SCAPT} {$raz[i].PRICE} &#8381;</option>
                                                 {/section}
                                             </select>
                                         </div>
@@ -82,7 +83,7 @@
                                             <button id="add-to-cart" class="btn btn-primary">В корзину</button>
                                         </div>
                                     </div>
-                                    <h3><span id="product-price">{*{$len[0].PRICE}*}</span> руб.</h3>
+                                    <h3><span id="product-price">{*{$len[0].PRICE}*}</span> &#8381;</h3>
                                 </div>
                             </div>
                             <p id="more-lines">{$item.CONTENT}</p>
@@ -103,29 +104,12 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="lin" value="{$category.ID}">
+        <input type="hidden" id="type" value="{$item.ID}">
         {include file="./right-col.tpl"}
     </div>
 </div>
-<div id="cart_modal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Заголовок модального окна -->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Сообщение</h4>
-            </div>
-            <!-- Основное содержимое модального окна -->
-            <div class="modal-body">
-                Добавлено в корзину
-            </div>
-            <!-- Футер модального окна -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                <a href="/shop/cart"  class="btn btn-primary">Перейти к оплате</a>
-            </div>
-        </div>
-    </div>
-</div>
+{include file="./cart_modal.tpl"}
 <script>
     var data_cart = {};
     data_cart.id = '{$ITEM.ID}';
@@ -157,23 +141,6 @@
         SetPrice();
     });
 
-    function AddCart(){
-        var array = [];
-        if ($.cookie('cart') !==null){
-            array = JSON.parse($.cookie('cart'));
-        }
-
-
-
-        array.push(data_cart);
-        $.cookie('cart', JSON.stringify(array), { expires: 180, path: '/' });
-
-        $(document).ready(function() {
-            $("#cart_modal").modal('show');
-        });
-        $("#cart-btn").show();
-    }
-
     function SetPrice(){
         var len = Number($("#length").val());
         var len_text = $('#length option:selected').text();
@@ -184,11 +151,11 @@
         $("#product-price").text(price);
         var page_title = '{$page_title}. ';
 
-        var page_title = page_title + len +' м. ';
+        page_title = page_title + len +' м. ';
         if (raz_text != '--'){
-            var page_title = page_title  + ' +  ' + raz_text + '. ';
+            page_title = page_title  + ' +  ' + raz_text + '. ';
         }
-        page_title = page_title + count + ' шт. ' + price + ' руб. '
+        page_title = page_title + count + ' шт. ' + price + ' &#8381; '
 
         data_cart.len = len;
         data_cart.len_text = len_text;
@@ -198,8 +165,8 @@
     }
 
     $("#add-to-cart").click(function(){
-        AddCart();
-    });
+        add_cart($("#type").val(), $("#length option:selected").attr("data-id"), $("#raz option:selected").attr("data-id"), $("#ser").val(), $("#lin").val(), $("#count").val(), $("#cart_modal") )
+    });-
 
     SetPrice();
 </script>

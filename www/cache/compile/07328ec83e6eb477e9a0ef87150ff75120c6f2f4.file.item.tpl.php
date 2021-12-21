@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-16 10:38:13
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-21 13:59:55
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\shop\item.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:186420940961b9cf266c8cc1-74940261%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '07328ec83e6eb477e9a0ef87150ff75120c6f2f4' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\shop\\item.tpl',
-      1 => 1639640191,
+      1 => 1640084389,
       2 => 'file',
     ),
   ),
@@ -96,6 +96,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smart
 "><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/quote-left.png" alt=""></a> <?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE'];?>
 </p>
+                                        <input type="hidden" id="ser" value="<?php echo $_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
+">
                                         <?php if ($_smarty_tpl->tpl_vars['categories']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SUB']) {?>
                                             <ul style="padding-left: 15px">
                                                 <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['j'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['j']);
@@ -172,7 +174,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['k']['last']       = ($_smart
                                         <div class="cart-btn">
                                             <img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/cart2.png" alt="">
-                                            <span>Купить <br> в один клик</span>
+                                            <a href="/shop/cart/">Купить <br> в один клик</a>
                                         </div>
                                     </div>
                                 <?php }?>
@@ -187,7 +189,7 @@ img/cart2.png" alt="">
 " alt="">
                                 </div>
                                 <div class="col-sm-6 category-desc">
-                                    <p class="category-title"><?php echo $_smarty_tpl->tpl_vars['item']->value['TITLE'];?>
+                                    <p class="category-title"><?php echo $_smarty_tpl->tpl_vars['item']->value['MODEL'];?>
 </p>
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -216,10 +218,11 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-                                                    <option value="<?php echo $_smarty_tpl->tpl_vars['len']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['PRICE'];?>
+                                                    <option data-id="<?php echo $_smarty_tpl->tpl_vars['len']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
+" value="<?php echo $_smarty_tpl->tpl_vars['len']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['PRICE'];?>
 ">Длина: <?php echo $_smarty_tpl->tpl_vars['len']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['LEN'];?>
  м. <?php echo $_smarty_tpl->tpl_vars['len']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['PRICE'];?>
- руб.</option>
+ &#8381;</option>
                                                 <?php endfor; endif; ?>
                                             </select>
                                         </div>
@@ -250,11 +253,12 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['i']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['total']);
 ?>
-                                                    <option value="<?php echo $_smarty_tpl->tpl_vars['raz']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['PRICE'];?>
+                                                    <option data-id="<?php echo $_smarty_tpl->tpl_vars['raz']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
+" value="<?php echo $_smarty_tpl->tpl_vars['raz']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['PRICE'];?>
 "><?php echo $_smarty_tpl->tpl_vars['raz']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SNAME'];?>
  <?php echo $_smarty_tpl->tpl_vars['raz']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SCAPT'];?>
  <?php echo $_smarty_tpl->tpl_vars['raz']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['PRICE'];?>
- руб.</option>
+ &#8381;</option>
                                                 <?php endfor; endif; ?>
                                             </select>
                                         </div>
@@ -276,7 +280,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
                                             <button id="add-to-cart" class="btn btn-primary">В корзину</button>
                                         </div>
                                     </div>
-                                    <h3><span id="product-price"></span> руб.</h3>
+                                    <h3><span id="product-price"></span> &#8381;</h3>
                                 </div>
                             </div>
                             <p id="more-lines"><?php echo $_smarty_tpl->tpl_vars['item']->value['CONTENT'];?>
@@ -323,30 +327,16 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['o']['last']       = ($_smart
                 </div>
             </div>
         </div>
+        <input type="hidden" id="lin" value="<?php echo $_smarty_tpl->tpl_vars['category']->value['ID'];?>
+">
+        <input type="hidden" id="type" value="<?php echo $_smarty_tpl->tpl_vars['item']->value['ID'];?>
+">
         <?php echo $_smarty_tpl->getSubTemplate ("./right-col.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
     </div>
 </div>
-<div id="cart_modal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Заголовок модального окна -->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Сообщение</h4>
-            </div>
-            <!-- Основное содержимое модального окна -->
-            <div class="modal-body">
-                Добавлено в корзину
-            </div>
-            <!-- Футер модального окна -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                <a href="/shop/cart"  class="btn btn-primary">Перейти к оплате</a>
-            </div>
-        </div>
-    </div>
-</div>
+<?php echo $_smarty_tpl->getSubTemplate ("./cart_modal.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <?php echo '<script'; ?>
 >
     var data_cart = {};
@@ -381,23 +371,6 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['o']['last']       = ($_smart
         SetPrice();
     });
 
-    function AddCart(){
-        var array = [];
-        if ($.cookie('cart') !==null){
-            array = JSON.parse($.cookie('cart'));
-        }
-
-
-
-        array.push(data_cart);
-        $.cookie('cart', JSON.stringify(array), { expires: 180, path: '/' });
-
-        $(document).ready(function() {
-            $("#cart_modal").modal('show');
-        });
-        $("#cart-btn").show();
-    }
-
     function SetPrice(){
         var len = Number($("#length").val());
         var len_text = $('#length option:selected').text();
@@ -409,11 +382,11 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['o']['last']       = ($_smart
         var page_title = '<?php echo $_smarty_tpl->tpl_vars['page_title']->value;?>
 . ';
 
-        var page_title = page_title + len +' м. ';
+        page_title = page_title + len +' м. ';
         if (raz_text != '--'){
-            var page_title = page_title  + ' +  ' + raz_text + '. ';
+            page_title = page_title  + ' +  ' + raz_text + '. ';
         }
-        page_title = page_title + count + ' шт. ' + price + ' руб. '
+        page_title = page_title + count + ' шт. ' + price + ' &#8381; '
 
         data_cart.len = len;
         data_cart.len_text = len_text;
@@ -423,8 +396,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['o']['last']       = ($_smart
     }
 
     $("#add-to-cart").click(function(){
-        AddCart();
-    });
+        add_cart($("#type").val(), $("#length option:selected").attr("data-id"), $("#raz option:selected").attr("data-id"), $("#ser").val(), $("#lin").val(), $("#count").val(), $("#cart_modal") )
+    });-
 
     SetPrice();
 <?php echo '</script'; ?>

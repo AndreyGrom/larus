@@ -40,7 +40,7 @@ class AdminShopController extends AdminController {
         $this->Head("?c=shop&act=settings");
     }
     public function SaveCategory(){
-        $alias            = ($this->post['alias']!=='')?$this->post['alias']:$this->func->TranslitURL($title);
+        $alias            = ($this->post['alias']!=='')?$this->post['alias']:$this->func->TranslitURL($this->post['title']) . "-" . $this->func->generateName(5);
         $delete_image     = $this->post['delete_image'];
         $old_image        = $this->post['old_image'];
 
@@ -85,7 +85,8 @@ class AdminShopController extends AdminController {
             }
             $this->Head("?c=shop&cid=$this->cid");
         } else {
-            $this->session['alert'] = 'Такой алиас уже существует';
+            $_SESSION['alert'] = 'Такой алиас уже существует';
+            $this->Head("?c=shop&&act=new_c");
         }
     }
 
@@ -101,7 +102,7 @@ class AdminShopController extends AdminController {
         }
 
         $title = $this->post['title'];
-        $alias = ($this->post['alias']!=='')?$this->post['alias']:Func::getInstance()->TranslitURL($title);
+        $alias = ($this->post['alias']!=='')?$this->post['alias']:Func::getInstance()->TranslitURL($this->post['model']);
 
         $tag = trim($this->post['tags']);
         if ($tag!==''){

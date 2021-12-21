@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-16 10:32:10
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-16 14:45:25
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\shop\category.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:96856980561b87df0430918-55711206%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6d729ac4921059c2c3af5346d68e284175bef948' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\shop\\category.tpl',
-      1 => 1639639917,
+      1 => 1639655079,
       2 => 'file',
     ),
   ),
@@ -167,7 +167,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['k']['last']       = ($_smart
                                         <div class="cart-btn">
                                             <img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/cart2.png" alt="">
-                                            <span>Купить <br> в один клик</span>
+                                            <a href="/shop/cart">Купить <br> в один клик</a>
                                         </div>
                                     </div>
                                 <?php }?>

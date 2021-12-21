@@ -676,6 +676,7 @@ filter-box button{
 }
 .shop-content .category-name p{
     text-align: center;
+    line-height: 18px;
 }
 
 .shop-content .category-name > ul{
@@ -762,12 +763,14 @@ filter-box button{
 
 }
 .cart-btn{
-    font-size: 10px;
-    line-height: 12px;
-    color: #000000;
     margin-left: 40px;
     margin-top: 50px;
     cursor: pointer;
+}
+.cart-btn a{
+    font-size: 10px;
+    line-height: 12px;
+    color: #000000;
 }
 .cart-btn img{
     float: left;
@@ -916,21 +919,65 @@ filter-box button{
     color: #EBEBEB;
 }
 .cart-content{
-    min-height: 600px;
+    min-height: 800px;
 }
 .cart-content .cart-form{
     background: #f4eee9;
+    padding: 40px;
 }
 .cart-content .cart-form form select{
     appearance: none;
     overflow: hidden;
-    background: url('../img/plus.png') no-repeat right;
+    background: url('../img/arrow_bottom.png') no-repeat right;
     background-position: 98% center;
     border-radius: 0;
     border: 1px solid #F2C897;
     width: 100%;
     padding: 8px 15px;
     margin-bottom: 16px;
+}
+.cart-products .cart-product-item{
+    margin-bottom: 30px;
+}
+.cart-products, .cart-products p, .cart-products a{
+    font-size: 12px;
+    line-height: 15px;
+    color: #FFFFFF;
+    margin-bottom: 2px;
+}
+.cart-products .cart-product-info .item-name{
+    text-transform: uppercase;
+}
+.cart-products .cart-product .item-price{
+    font-size: 18px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: #FFFAFA;
+}
+.cart-products .cart-title{
+    font-size: 18px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.cart-products .cart-product {
+    margin-top: 20px;
+}
+.cart-products .cart-product .cart-delete-item, .cart-products .cart-product .cart-delete-raz{
+    cursor: pointer;
+}
+.cart-product-info{
+    margin-bottom: 20px;
+}
+.cart-products .itogo{
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #FFFAFA;
 }
 @media (max-width: 767px) {
     /* стили для xs-устройств */
