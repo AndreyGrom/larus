@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-10-28 18:32:36
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-21 17:08:17
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\common\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:329719597617ac294150ea5-17411430%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5ebaeb09a0b51d00b844330d2b5e8f435bb94e64' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\common\\footer.tpl',
-      1 => 1634629833,
+      1 => 1640095683,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_617ac294158ba5_37512046',
   'variables' => 
   array (
     'main' => 0,
     'theme_dir' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_617ac294158ba5_37512046',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_617ac294158ba5_37512046')) {function content_617ac294158ba5_37512046($_smarty_tpl) {?><footer>
     <?php if ($_smarty_tpl->tpl_vars['main']->value) {?>
@@ -110,5 +110,31 @@ img/ok.png" alt=""></a>
         </div>
     </div>
 </footer>
+<div id="coockie-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <p>Используются файлы coockie, благодаря которым следим мы за вами и собираем о вас информацию.</p>
+                <p>Мы знаем знать куда вы ходите и во-сколько. Когда вас не будет дома, мы будем воровать еду из вашего холодильника!</p>
+            </div>
+            <div class="col-sm-2">
+                <button id="accept-coockies" class="btn btn-outline-warning" type="submit">Все понятно!</button>
+                <p><a href="http://yandex.ru">Мне это не надо</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<?php echo '<script'; ?>
+>
+    $("#accept-coockies").click(function(){
+        $.cookie('conf', '1', { expires: 365, path: '/' });
+        $("#coockie-box").hide();
+    });
+
+    if ( $.cookie('conf') == null ) {
+        $("#coockie-box").show();
+    }
+<?php echo '</script'; ?>
+>
 </body>
 </html><?php }} ?>

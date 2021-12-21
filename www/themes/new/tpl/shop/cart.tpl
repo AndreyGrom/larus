@@ -177,7 +177,6 @@
     });
     add_btn.click(function () {
         add_cart(type_s.val(), $("#len option:selected").attr("data-id"), $("#raz option:selected").attr("data-id"), ser_s.val(), lin_s.val(), 1, null );
-        document.location.href = "/shop/cart";
     });
     {/literal}
 </script>

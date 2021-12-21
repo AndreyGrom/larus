@@ -72,5 +72,29 @@
         </div>
     </div>
 </footer>
+<div id="coockie-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <p>Используются файлы coockie, благодаря которым мы следим за вами и собираем о вас информацию.</p>
+                <p>Мы знаем куда вы ходите и во-сколько. Когда вас не будет дома, мы будем воровать еду из вашего холодильника!</p>
+            </div>
+            <div class="col-sm-2">
+                <button id="accept-coockies" class="btn btn-outline-warning" type="submit">Все понятно!</button>
+                <p><a href="http://yandex.ru">Мне это не надо</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#accept-coockies").click(function(){
+        $.cookie('conf', '1', { expires: 365, path: '/' });
+        $("#coockie-box").hide();
+    });
+
+    if ( $.cookie('conf') == null ) {
+        $("#coockie-box").show();
+    }
+</script>
 </body>
 </html>

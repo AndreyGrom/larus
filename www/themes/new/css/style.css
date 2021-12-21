@@ -9,6 +9,26 @@ hr{
     border: none;
     background: #F2C897;
 }
+#coockie-box{
+    width: 100%;
+    padding: 20px 0;
+    background-color: #555;
+    top: auto;
+    bottom:0;
+    left: 0;
+    position: fixed;
+    display: none;
+    border-top: 1px solid #000;
+}
+#coockie-box a {
+    display: block;
+    color: #000;
+    margin-top: 10px;
+}
+#coockie-box p{
+    color: #fff;
+
+}
 .no-p-l{
     padding-left: 0;
 }

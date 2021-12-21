@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-21 16:48:32
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-21 17:20:56
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\shop\cart.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11235810661baf1b32b1556-34594882%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c377c4889b311ef4b7f7096b9fdadeff9aa35624' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\shop\\cart.tpl',
-      1 => 1640094509,
+      1 => 1640096451,
       2 => 'file',
     ),
   ),
@@ -272,7 +272,6 @@ img/delete.png" alt="">
     });
     add_btn.click(function () {
         add_cart(type_s.val(), $("#len option:selected").attr("data-id"), $("#raz option:selected").attr("data-id"), ser_s.val(), lin_s.val(), 1, null );
-        document.location.href = "/shop/cart";
     });
     
 <?php echo '</script'; ?>

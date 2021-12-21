@@ -15,7 +15,10 @@ function add_cart(product_id, len_id, raz_id, ser_id, lin_id, cnt, modal) {
         success: function(data){
             if (modal !== null){
                 modal.modal('show');
+            } else {
+                document.location.href = "/shop/cart";
             }
         }
     });
 }
+
