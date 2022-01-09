@@ -1,4 +1,9 @@
 $(document).ready(function(){
+    function myCustomOnInit() {
+        $("#mceu_50-40").attr("data-mce-color", '#854040');
+        $("#mceu_50-40").data("mce-color", '#854040');
+        alert($("#mceu_50-40").attr("data-mce-color"));
+    }
     tinymce.init({
         selector:'.textarea-edit',
         language : 'ru',
@@ -19,6 +24,13 @@ $(document).ready(function(){
 
         external_filemanager_path:"/filemanager/",
         filemanager_title:"Responsive Filemanager" ,
-        external_plugins: { "filemanager" : "/filemanager/plugin.min.js"}
+        external_plugins: { "filemanager" : "/filemanager/plugin.min.js"},
+        // init_instance_callback : myCustomOnInit
+        //theme_advanced_text_colors : "FFFFFF,000000"
+        // textcolor_map: [
+        //     'D7C0D0', 'color1',
+        //     'F7C7DB', 'color2',
+        // ]
     });
+
 });

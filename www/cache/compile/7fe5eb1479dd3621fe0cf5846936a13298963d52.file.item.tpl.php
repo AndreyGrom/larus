@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-05 12:46:24
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-03 17:53:13
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\blog\item.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:805390006618e4f089fd072-96330183%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7fe5eb1479dd3621fe0cf5846936a13298963d52' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\blog\\item.tpl',
-      1 => 1638697582,
+      1 => 1640271821,
       2 => 'file',
     ),
   ),
@@ -26,7 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'categories' => 0,
     'cats' => 0,
     'item' => 0,
-    'items' => 0,
     'comments_form' => 0,
     'comments' => 0,
   ),
@@ -148,8 +147,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['j']['last']       = ($_smart
                 <h1 class="blog-title"><?php echo $_smarty_tpl->tpl_vars['item']->value['TITLE'];?>
 </h1>
                 <div class="blog-content-img">
-                    <img class="img-responsive" src="/upload/images/blog/<?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SKIN']) {
-echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SKIN'];
+                    <img class="img-responsive" src="/upload/images/blog/<?php if ($_smarty_tpl->tpl_vars['item']->value['SKIN']) {
+echo $_smarty_tpl->tpl_vars['item']->value['SKIN'];
 } else { ?>Z3i5b3DSYHEiDYKNST7k.jpg<?php }?>" alt="">
                 </div>
                 <?php echo $_smarty_tpl->tpl_vars['item']->value['CONTENT'];?>

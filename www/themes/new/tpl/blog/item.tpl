@@ -51,7 +51,7 @@
                 <div class="date">{$item.DATE_PUBL}</div>
                 <h1 class="blog-title">{$item.TITLE}</h1>
                 <div class="blog-content-img">
-                    <img class="img-responsive" src="/upload/images/blog/{if $items[i].SKIN}{$items[i].SKIN}{else}Z3i5b3DSYHEiDYKNST7k.jpg{/if}" alt="">
+                    <img class="img-responsive" src="/upload/images/blog/{if $item.SKIN}{$item.SKIN}{else}Z3i5b3DSYHEiDYKNST7k.jpg{/if}" alt="">
                 </div>
                 {$item.CONTENT}
                 <h3>Понравился материал? Поделитесь:</h3>

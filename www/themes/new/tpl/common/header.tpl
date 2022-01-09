@@ -73,28 +73,28 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-main">
                         <ul class="nav navbar-nav">
-                            <li><a href="/history">История</a></li>
-                            <li><a href="/texnology">Технология</a></li>
-                            <li><a href="/practice ">Практика</a></li>
-                            <li><a href="/shop">Продукция</a></li>
-                            <li><a href="/blog">Блог</a></li>
+                            <li {if $module_name == 'pages' && $page.ID == 9}class="active"{/if}><a href="/history">История</a></li>
+                            <li {if $module_name == 'pages' && $page.ID == 10}class="active"{/if}><a href="/texnology">Технология</a></li>
+                            <li {if $module_name == 'pages' && $page.ID == 11}class="active"{/if}><a href="/practice">Практика</a></li>
+                            <li {if $module_name == 'shop'}class="active"{/if}><a href="/shop">Продукция</a></li>
+                            <li {if $module_name == 'blog'}class="active"{/if}><a href="/blog">Блог</a></li>
                         </ul>
-                    </div>
+                    </div>s
                 </div>
                 <div class="box-center-absolute-horizontal">
                     <a href="/"><img class="img-responsive" src="{$theme_dir}img/logo2.png" alt=""></a>
                 </div>
-                <div class="pull-right menu-padding">
+                <div class="pull-right menu-padding top-right-menu">
                     <ul class="hidden-sm hidden-xs nav navbar-nav">
-                        <li><a href="/partners">партнеры и представители</a></li>
+                        <li><a href="/main#footer-parthers">партнеры и представители</a></li>
                     </ul>
                     <ul class="nav navbar-nav">
                         <li><a class="btn btn-tradein hidden-sm hidden-xs" href="/tradein">trade-in</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-icons">
                         <li class="icon-find"><a href="#"><img src="{$theme_dir}img/find.png" alt=""></a></li>
-                        <li class="hidden-sm hidden-xs"><a href="#"><img src="{$theme_dir}img/message.png" alt=""></a></li>
-                        <li class="hidden-sm hidden-xs"><a href="#"><img src="{$theme_dir}img/signin.png" alt=""></a></li>
+                        <li class="hidden-sm hidden-xs"><a href="#" data-toggle="modal" data-target="#feedback-modal"><img src="{$theme_dir}img/message.png" alt=""></a></li>
+                        {*<li class="hidden-sm hidden-xs"><a href="#"><img src="{$theme_dir}img/signin.png" alt=""></a></li>*}
                     </ul>
                     <ul class="hidden-sm hidden-xs nav navbar-nav">
                         <li><a href="/shop/cart"><img src="{$theme_dir}img/cart.png" alt=""></a></li>

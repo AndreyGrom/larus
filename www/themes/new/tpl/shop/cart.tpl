@@ -65,7 +65,16 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-sm-2"><span class="item-price">{if $items[i].RAZ}{$items[i].RAZ_PRICE} &#8381;{else}<img style="margin-top: -30px;" class="img-responsive" src="{$theme_dir}img/figa.png" alt="">{/if}</span></div>
+                    <div class="col-sm-2">
+                        <span class="item-price">
+                            {if $items[i].RAZ}
+                                {$items[i].RAZ_PRICE} &#8381;
+                            {else}
+                                Нет
+                                {*<img style="margin-top: -30px;" class="img-responsive" src="{$theme_dir}img/figa.png" alt="">*}
+                            {/if}
+                        </span>
+                    </div>
                     <div class="col-sm-2 text-right">
                         <a href="/shop/cart-delete-raz={$items[i].ID}">
                             {if $items[i].RAZ}
@@ -74,9 +83,12 @@
                         </a>
                     </div>
                 </div>
+                {if !$smarty.section.i.last}
+                <hr>
+                {/if}
                 <div class="cart-product-item"></div>
             {/section}
-            <hr>
+            <div class="delimiter"></div>
             <div class="row itogo">
                 <div class="col-sm-2">ИТОГО</div>
                 <div class="col-sm-6"></div>

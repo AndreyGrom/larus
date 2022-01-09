@@ -72,4 +72,25 @@ Smart::getInstance()->register_function("blog_pupular", "BlogGetPopular");
 Smart::getInstance()->register_function("other_items_blog", "print_other_items_blog");
 Smart::getInstance()->register_function("blog_items", "blog_latest_items");
 
+function blog_images ($id) {
+    if (isset($id)){
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM agcms_blog_i WHERE ID = $id LIMIT 1";
+        $row = $db->select($sql, array('single_array' => true));
+        $skin = $row["SKIN"];
+        $items = explode(',',$row['IMAGES']);
+        $smarty = Smart::getInstance();
+        $smarty->template_dir = TEMPLATES_DIR.Config::getInstance()->Theme.'/tpl/blog/';
+        $file = TEMPLATES_DIR.Config::getInstance()->Theme.'/tpl/blog/images.tpl';
+        if (file_exists($file)){
+            $smarty->assign(array('skin' => $skin, 'items' => $items));
+            $rs = $smarty->fetch('images.tpl');
+        }
+        Manager::getInstance()->SetJS(HTML_PLUGINS_DIR.'fancybox/jquery.fancybox.js');
+        Manager::getInstance()->SetJS(HTML_PLUGINS_DIR.'fancybox/jquery.fancybox.pack.js');
+        Manager::getInstance()->SetCSS(HTML_PLUGINS_DIR.'fancybox/jquery.fancybox.css');
+    }
+
+    return $rs;
+}
 ?>

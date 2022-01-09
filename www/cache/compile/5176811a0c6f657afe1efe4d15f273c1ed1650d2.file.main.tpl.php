@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-10-28 19:00:17
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-09 23:01:32
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\pages\main.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:90110019617ac91195a278-17535494%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5176811a0c6f657afe1efe4d15f273c1ed1650d2' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\pages\\main.tpl',
-      1 => 1634636702,
+      1 => 1641758474,
       2 => 'file',
     ),
   ),
@@ -15,16 +15,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_617ac911b3e8e6_95383717',
   'variables' => 
   array (
     'blog_items' => 0,
     'theme_dir' => 0,
+    'vistav' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_617ac911b3e8e6_95383717',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_617ac911b3e8e6_95383717')) {function content_617ac911b3e8e6_95383717($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("../common/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array('main'=>true), 0);?>
+<?php if ($_valid && !is_callable('content_617ac911b3e8e6_95383717')) {function content_617ac911b3e8e6_95383717($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_truncate')) include 'D:\\data\\domains\\provoda\\www\\system\\smarty\\plugins\\modifier.truncate.php';
+?><?php echo $_smarty_tpl->getSubTemplate ("../common/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array('main'=>true), 0);?>
 
 <section class="s1">
     <div class="container">
@@ -204,27 +206,63 @@ img/arrow-button.png" alt=""></a>
 <section class="s3">
     <div class="container">
         <div class="row row-flex desctop-visible">
-            <div class="col-sm-5 s3-col-1">
-
+            <div class="col-sm-7 s3-col-1">
                 <div class="p1">
-                    <span>Hi-Fi & High End Show 2019 Битва Форматов 2019</span>
-                    <br>
-                    <div class="alert alert-danger">
-                        Слайдер сделаю, когда буду натягивать на движок, потому что инфорация будет браться из базы при перелистывании
-                    </div>
-                    Аудитории предлагалось прослушать одну и ту же музыкальную композицию, записанную на разных носителях: компакт-диске, магнитной ленте, компактной кассете, виниловом диске, а также в виде файла высокого разрешения.
-                    <br><br>
-                    Далее слушатели заполняли анкету, на которой указывали их мнение, в какой последовательности были воспроизведены эти носители...
-                    <br>
-                    <a href="#">Читать далее</a>
-                </div>
+                    <?php echo GetBlog(array('cid'=>1,'source'=>'vistav'),$_smarty_tpl);?>
 
+                    <span class="p1-title"><?php echo $_smarty_tpl->tpl_vars['vistav']->value['TITLE'];?>
+</span>
+                    <div class="p1-content">
+                        <?php echo smarty_modifier_truncate(preg_replace('!<[^>]*?>!', ' ', $_smarty_tpl->tpl_vars['vistav']->value['CONTENT']),400);?>
+
+                    </div>
+                    <a target="_blank" class="p1-more" href="/blog/<?php echo $_smarty_tpl->tpl_vars['vistav']->value['ALIAS'];?>
+">Читать далее</a>
+                    <div class="button-left" data-current="<?php echo $_smarty_tpl->tpl_vars['vistav']->value['NUMBER'];?>
+"></div>
+                    <div class="button-right" data-current="<?php echo $_smarty_tpl->tpl_vars['vistav']->value['NUMBER'];?>
+"></div>
+                </div>
+                <div class="p2">
+                    <img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+img/load.gif" alt="">
+                </div>
             </div>
-            <div class="col-sm-7 s3-col-2">
+            <div class="col-sm-5 s3-col-2">
                 <span class="span1">LIVING ATHMOS</span><br>
                 <span class="span2">на выставках в России</span>
             </div>
         </div>
+        <?php echo '<script'; ?>
+>
+            function GetBlog(id, nap) {
+                $(".s3 .p2").show();
+                var el = $(".p1");
+                var data = "action=GebBlog&id=" + id + "&nap=" + nap
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "/",
+                    success: function(msg){
+                        var obj = JSON.parse(msg);
+                        console.log(obj);
+                        el.find(".p1-title").text(obj.TITLE);
+                        el.find(".p1-more").attr('href', "/blog/" + obj.alias);
+                        el.find(".p1-content").html(obj.SHORT_CONTENT);
+                        el.find(".button-left").attr('data-current', obj.NUMBER);
+                        el.find(".button-right").attr('data-current', obj.NUMBER);
+                        $(".s3 .p2").hide();
+                    }
+                });
+            }
+            $(".button-left").click(function () {
+                GetBlog($(this).attr('data-current'), 0);
+            });
+            $(".button-right").click(function () {
+                GetBlog($(this).attr('data-current'), 1);
+            });
+        <?php echo '</script'; ?>
+>
         <div class="mobile-visible">
             <div class="s3-col-2">
                 <span class="span1">LIVING ATHMOS</span><br>

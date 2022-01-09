@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-16 10:53:04
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-27 14:31:38
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1125350525617ac293ee18c0-10852104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a6e34527bf2ec5d9f3ce0e28aebb2ab960f63347' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\common\\header.tpl',
-      1 => 1639641180,
+      1 => 1640604695,
       2 => 'file',
     ),
   ),
@@ -29,6 +29,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'js' => 0,
     'css' => 0,
     'main' => 0,
+    'module_name' => 0,
+    'page' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -207,21 +209,21 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-main">
                         <ul class="nav navbar-nav">
-                            <li><a href="/history">История</a></li>
-                            <li><a href="/texnology">Технология</a></li>
-                            <li><a href="/practice ">Практика</a></li>
-                            <li><a href="/shop">Продукция</a></li>
-                            <li><a href="/blog">Блог</a></li>
+                            <li <?php if ($_smarty_tpl->tpl_vars['module_name']->value=='pages'&&$_smarty_tpl->tpl_vars['page']->value['ID']==9) {?>class="active"<?php }?>><a href="/history">История</a></li>
+                            <li <?php if ($_smarty_tpl->tpl_vars['module_name']->value=='pages'&&$_smarty_tpl->tpl_vars['page']->value['ID']==10) {?>class="active"<?php }?>><a href="/texnology">Технология</a></li>
+                            <li <?php if ($_smarty_tpl->tpl_vars['module_name']->value=='pages'&&$_smarty_tpl->tpl_vars['page']->value['ID']==11) {?>class="active"<?php }?>><a href="/practice">Практика</a></li>
+                            <li <?php if ($_smarty_tpl->tpl_vars['module_name']->value=='shop') {?>class="active"<?php }?>><a href="/shop">Продукция</a></li>
+                            <li <?php if ($_smarty_tpl->tpl_vars['module_name']->value=='blog') {?>class="active"<?php }?>><a href="/blog">Блог</a></li>
                         </ul>
-                    </div>
+                    </div>s
                 </div>
                 <div class="box-center-absolute-horizontal">
                     <a href="/"><img class="img-responsive" src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/logo2.png" alt=""></a>
                 </div>
-                <div class="pull-right menu-padding">
+                <div class="pull-right menu-padding top-right-menu">
                     <ul class="hidden-sm hidden-xs nav navbar-nav">
-                        <li><a href="/partners">партнеры и представители</a></li>
+                        <li><a href="/main#footer-parthers">партнеры и представители</a></li>
                     </ul>
                     <ul class="nav navbar-nav">
                         <li><a class="btn btn-tradein hidden-sm hidden-xs" href="/tradein">trade-in</a></li>
@@ -229,10 +231,9 @@ img/logo2.png" alt=""></a>
                     <ul class="nav navbar-nav navbar-icons">
                         <li class="icon-find"><a href="#"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/find.png" alt=""></a></li>
-                        <li class="hidden-sm hidden-xs"><a href="#"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+                        <li class="hidden-sm hidden-xs"><a href="#" data-toggle="modal" data-target="#feedback-modal"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/message.png" alt=""></a></li>
-                        <li class="hidden-sm hidden-xs"><a href="#"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
-img/signin.png" alt=""></a></li>
+                        
                     </ul>
                     <ul class="hidden-sm hidden-xs nav navbar-nav">
                         <li><a href="/shop/cart"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>

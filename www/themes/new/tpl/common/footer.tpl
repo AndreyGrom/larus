@@ -1,6 +1,6 @@
 <footer>
     {if $main}
-    <div class="footer-top">
+    <div class="footer-top" id="footer-parthers">
         <div class="container">
             <hr>
             <div class="row">
@@ -29,14 +29,14 @@
             <div class="row">
                 <div class="col-sm-5 footer-menu desctop-visible">
                     <ul class="tire-ul">
-                        <li><a href="#">История</a></li>
-                        <li><a href="#">Технология</a></li>
-                        <li><a href="#">Практика</a></li>
-                        <li><a href="#">Продукция</a></li>
-                        <li><a href="#">Блог</a></li>
+                        <li><a href="/history">История</a></li>
+                        <li><a href="/texnology">Технология</a></li>
+                        <li><a href="/practice">Практика</a></li>
+                        <li><a href="/shop">Продукция</a></li>
+                        <li><a href="/blog">Блог</a></li>
                     </ul>
                     <ul class="tire-ul">
-                        <li><a href="#">Новости</a></li>
+                        <li><a href="/blog/cats=2">Новости</a></li>
                         <li><a href="#">Партнеры</a></li>
                         <li><a href="#">Представители</a></li>
                     </ul>
@@ -46,9 +46,9 @@
                 </div>
                 <div class="col-sm-5 desctop-visible">
                     <div class="footer-icons">
-                        <p><a href="#"><img src="{$theme_dir}img/message.png" alt=""> Связаться с нами</a></p>
-                        <p><a href="#"><img src="{$theme_dir}img/find.png" alt=""> Поиск по сайту</a></p>
-                        <p><a href="#"><img src="{$theme_dir}img/signin.png" alt=""> Выход</a></p>
+                        <p><a href="#" data-toggle="modal" data-target="#feedback-modal"><img src="{$theme_dir}img/message.png" alt=""> Связаться с нами</a></p>
+                        <p><a id="find-open" href="#"><img src="{$theme_dir}img/find.png" alt=""> Поиск по сайту</a></p>
+                       {* <p><a href="#"><img src="{$theme_dir}img/signin.png" alt=""> Выход</a></p>*}
                     </div>
                 </div>
             </div>
@@ -72,29 +72,21 @@
         </div>
     </div>
 </footer>
-<div id="coockie-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-10">
-                <p>Используются файлы coockie, благодаря которым мы следим за вами и собираем о вас информацию.</p>
-                <p>Мы знаем куда вы ходите и во-сколько. Когда вас не будет дома, мы будем воровать еду из вашего холодильника!</p>
-            </div>
-            <div class="col-sm-2">
-                <button id="accept-coockies" class="btn btn-outline-warning" type="submit">Все понятно!</button>
-                <p><a href="http://yandex.ru">Мне это не надо</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    $("#accept-coockies").click(function(){
-        $.cookie('conf', '1', { expires: 365, path: '/' });
-        $("#coockie-box").hide();
-    });
 
-    if ( $.cookie('conf') == null ) {
-        $("#coockie-box").show();
-    }
+{include file="./cookies.tpl"}
+{include file="./find.tpl"}
+{include file="./feedback-form.tpl"}
+<script>
+$(document).ready(function () {
+    $("a.fancy").fancybox({
+        padding : 0,
+        helpers: {
+            overlay: {
+                locked: false
+            }
+        }
+    });
+});
 </script>
 </body>
 </html>

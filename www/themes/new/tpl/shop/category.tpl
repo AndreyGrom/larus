@@ -65,7 +65,7 @@
                                                     </a>
                                                 </div>
 
-                                                <div class="pull-left">{round($items[k].LEN_PRICE)} &#8381;/{$items[k].LEN|replace:'.':','} м.</div>
+                                                <div class="pull-left product-price">{round($items[k].LEN_PRICE)} &#8381;/{$items[k].LEN|replace:'.':','} м.</div>
                                                 <div class="pull-right"><a href="/shop/{$items[k].ALIAS}"><img src="{$theme_dir}img/add-cart.png" alt=""></a></div>
                                                 <div class="clearfix"></div>
                                                 <a href="/shop/{$items[k].ALIAS}">{$items[k].TITLE}</a>

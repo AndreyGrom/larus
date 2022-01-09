@@ -4,6 +4,9 @@
             {if $new}
                 <span class="form-control">Сначала сохраните материал</span>
             {else}
+                <div class="alert alert-info">
+                    <p>Код вызова: <input onclick="this.select()" class="form-control" style="display:inline-block;width: 270px" type="text" readonly value='[widjet name="blog_images" params="{$item.ID}"]'/></p>
+                </div>
                 <div id="upload" class="btn btn-success btn-large"><span>Выбрать файл<span></div>
                 <span id="status"></span>
             {/if}

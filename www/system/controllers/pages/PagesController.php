@@ -6,7 +6,37 @@ class PagesController extends Controller {
         $this->table_name = 'agcms_pages`';
         $this->module_alias = 'pages';
     }
+    public function GetBlog(){
+        $rs = false;
+        $number = $this->post['id'];
+        $nap = $this->post['nap'];
+        $cid = 1;
+        $sql = "SELECT * FROM agcms_blog_i WHERE PARENT LIKE '%,$cid,%' AND PUBLIC=1";
+        if ($items = $this->db->select($sql)){
+            if ($nap == 1){
+                $number = $number + 1;
+            }
+            if ($nap == 0){
+                $number = $number - 1;
+            }
+            if (count($items) == $number){
+                $number = 0;
+            }
+            if ($number == -1){
+                $number = count($items)-1;
+            }
+
+            $rs = $items[$number];
+            $rs['NUMBER'] = $number;
+            $rs['SHORT_CONTENT'] = mb_substr(strip_tags($rs['CONTENT']), 0, 400);
+        }
+        echo json_encode($rs);
+        exit;
+    }
     public function Index(){
+        if (isset($this->post['action']) && $this->post['action'] == 'GebBlog'){
+            $this->GetBlog();
+        }
         $this->LoadModel('pages');
         if ($this->query){
             $row = $this->ModelPages->GetPageClient(end($this->query));

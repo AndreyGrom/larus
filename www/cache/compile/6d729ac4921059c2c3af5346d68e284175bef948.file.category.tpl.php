@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-16 14:45:25
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-23 15:57:46
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\shop\category.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:96856980561b87df0430918-55711206%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6d729ac4921059c2c3af5346d68e284175bef948' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\shop\\category.tpl',
-      1 => 1639655079,
+      1 => 1640172325,
       2 => 'file',
     ),
   ),
@@ -227,7 +227,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['k']['last']       = ($_smart
                                                     </a>
                                                 </div>
 
-                                                <div class="pull-left"><?php echo round($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['k']['index']]['LEN_PRICE']);?>
+                                                <div class="pull-left product-price"><?php echo round($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['k']['index']]['LEN_PRICE']);?>
  &#8381;/<?php echo smarty_modifier_replace($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['k']['index']]['LEN'],'.',',');?>
  м.</div>
                                                 <div class="pull-right"><a href="/shop/<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['k']['index']]['ALIAS'];?>
