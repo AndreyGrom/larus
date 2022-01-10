@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-27 14:31:38
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-10 20:20:27
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1125350525617ac293ee18c0-10852104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a6e34527bf2ec5d9f3ce0e28aebb2ab960f63347' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\common\\header.tpl',
-      1 => 1640604695,
+      1 => 1641767813,
       2 => 'file',
     ),
   ),
@@ -26,6 +26,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'theme_dir' => 0,
     'self_url' => 0,
     'config' => 0,
+    'html_plugins_dir' => 0,
     'js' => 0,
     'css' => 0,
     'main' => 0,
@@ -129,6 +130,16 @@ slick/slick.min.js"><?php echo '</script'; ?>
 >
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 css/style.css">
+    <link href="<?php echo $_smarty_tpl->tpl_vars['html_plugins_dir']->value;?>
+fancybox/jquery.fancybox.css" rel="stylesheet">
+    <?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['html_plugins_dir']->value;?>
+fancybox/jquery.fancybox.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['html_plugins_dir']->value;?>
+fancybox/jquery.fancybox.pack.js"><?php echo '</script'; ?>
+>
     <?php echo '<script'; ?>
  type="text/javascript" src="/system/plugins/jquery.cookie.js"><?php echo '</script'; ?>
 >

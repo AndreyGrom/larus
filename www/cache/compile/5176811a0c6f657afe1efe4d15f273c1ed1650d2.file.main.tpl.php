@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-09 23:01:32
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-10 20:20:27
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\pages\main.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:90110019617ac91195a278-17535494%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5176811a0c6f657afe1efe4d15f273c1ed1650d2' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\pages\\main.tpl',
-      1 => 1641758474,
+      1 => 1641767293,
       2 => 'file',
     ),
   ),
@@ -245,9 +245,8 @@ img/load.gif" alt="">
                     url: "/",
                     success: function(msg){
                         var obj = JSON.parse(msg);
-                        console.log(obj);
                         el.find(".p1-title").text(obj.TITLE);
-                        el.find(".p1-more").attr('href', "/blog/" + obj.alias);
+                        el.find(".p1-more").attr('href', "/blog/" + obj.ALIAS);
                         el.find(".p1-content").html(obj.SHORT_CONTENT);
                         el.find(".button-left").attr('data-current', obj.NUMBER);
                         el.find(".button-right").attr('data-current', obj.NUMBER);

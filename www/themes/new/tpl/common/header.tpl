@@ -48,6 +48,9 @@
     <link rel="stylesheet" type="text/css" href="{$theme_dir}slick/slick-theme.css"/>
     <script type="text/javascript" src="{$theme_dir}slick/slick.min.js"></script>
     <link rel="stylesheet" href="{$theme_dir}css/style.css">
+    <link href="{$html_plugins_dir}fancybox/jquery.fancybox.css" rel="stylesheet">
+    <script type="text/javascript" src="{$html_plugins_dir}fancybox/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="{$html_plugins_dir}fancybox/jquery.fancybox.pack.js"></script>
     <script type="text/javascript" src="/system/plugins/jquery.cookie.js"></script>
     <script type="text/javascript" src="{$theme_dir}js/main.js"></script>
     {section name=i loop=$js}
