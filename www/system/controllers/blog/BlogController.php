@@ -123,23 +123,26 @@ class BlogController extends Controller {
             $cats = explode(',', $this->get['cats']);
             $where2 = array();
             foreach ($cats as $c){
-                $where2[] = "PARENT LIKE '%,$c,%'";
+                $where2[] = "i.PARENT LIKE '%,$c,%'";
             }
             $where[] = "(" . implode(" OR ", $where2) . ")";
         } else{
             $where2 = array();
             foreach ($categories as $c){
-                $where2[] = "PARENT LIKE '%," . $c['ID'] . ",%'";
+                $where2[] = "i.PARENT LIKE '%," . $c['ID'] . ",%'";
             }
-            $where2[] = "PARENT LIKE '%,,%'";
+            $where2[] = "i.PARENT LIKE '%,,%'";
             $where[] = "(" . implode(" OR ", $where2) . ")";
         }
 
         if (count($where) > 0){
             $where = " WHERE " . implode(' AND ', $where);
         }
-        $sql = "SELECT *, @id:=ID, (SELECT COUNT(*) FROM ".db_pref."comments WHERE CONTROLLER = 'blog' AND MATERIAL_ID = @id) AS COMMENTS_COUNT FROM ".db_pref."blog_i $where ORDER BY DATE_PUBL $sort";
-
+        $sql = "SELECT i.*, v.VIDEO_CODE,
+                (SELECT COUNT(*) FROM ".db_pref."comments c WHERE c.CONTROLLER = 'blog' AND c.MATERIAL_ID = i.ID) AS COMMENTS_COUNT 
+                FROM agcms_blog_i i 
+                LEFT JOIN agcms_video_i v ON v.ID = i.VIDEO
+                $where ORDER BY i.DATE_PUBL $sort";
         $params = array(
             'sql' => $sql,
             'per_page' => $this->config->BlogItemListPerPage,
@@ -365,7 +368,7 @@ class BlogController extends Controller {
     }
 
     public function GetCategories($parent = 0){
-        $sql = "SELECT * FROM agcms_blog_c WHERE PARENT = $parent";
+        $sql = "SELECT * FROM agcms_blog_c WHERE PARENT = $parent AND PUBLIC = 1";
         $items = $this->db->select($sql);
         return $items;
     }

@@ -22,7 +22,7 @@
     <div class="form-group">
         <label for="alias" class="col-sm-3 control-label">Модель:</label>
         <div class="col-sm-9">
-            <input value="{$item.MODEL}" name="model" id="link" type="text" class="form-control" placeholder="" />
+            <input value="{$item.MODEL}" name="model" id="model" type="text" class="form-control" placeholder="" />
 
         </div>
     </div>

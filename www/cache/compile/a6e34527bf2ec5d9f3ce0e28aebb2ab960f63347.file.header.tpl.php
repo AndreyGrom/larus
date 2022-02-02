@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-10 20:20:27
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-02-02 11:10:47
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1125350525617ac293ee18c0-10852104%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a6e34527bf2ec5d9f3ce0e28aebb2ab960f63347' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\common\\header.tpl',
-      1 => 1641767813,
+      1 => 1643746812,
       2 => 'file',
     ),
   ),
@@ -30,8 +30,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'js' => 0,
     'css' => 0,
     'main' => 0,
+    'class' => 0,
     'module_name' => 0,
     'page' => 0,
+    'login' => 0,
+    'user' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -144,6 +147,9 @@ fancybox/jquery.fancybox.pack.js"><?php echo '</script'; ?>
  type="text/javascript" src="/system/plugins/jquery.cookie.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
+ type="text/javascript" src="/system/plugins/upload.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 js/main.js"><?php echo '</script'; ?>
 >
@@ -205,7 +211,9 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
     <?php endfor; endif; ?>
 
 </head>
-<body class="<?php if ($_smarty_tpl->tpl_vars['main']->value) {?>main-page<?php } else { ?>default-page<?php }?>">
+<body class="<?php if ($_smarty_tpl->tpl_vars['main']->value) {?>main-page<?php } elseif ($_smarty_tpl->tpl_vars['class']->value) {
+echo $_smarty_tpl->tpl_vars['class']->value;
+} else { ?>default-page<?php }?>">
 <header>
     <nav class="navbar navbar-default <?php if ($_smarty_tpl->tpl_vars['main']->value) {?>navbar-fixed-top<?php }?> navbar-custom">
         <div class="container">
@@ -244,7 +252,29 @@ img/logo2.png" alt=""></a>
 img/find.png" alt=""></a></li>
                         <li class="hidden-sm hidden-xs"><a href="#" data-toggle="modal" data-target="#feedback-modal"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
 img/message.png" alt=""></a></li>
-                        
+                        <?php if (!$_smarty_tpl->tpl_vars['login']->value) {?>
+                            <li class="hidden-sm hidden-xs"><a href="#" data-toggle="modal" data-target="#login-modal"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
+img/signin.png" alt=""></a></li>
+                        <?php } else { ?>
+                            <li class="dropdown">
+                                <a title="<?php echo $_smarty_tpl->tpl_vars['user']->value['FIO'];?>
+" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user"></i>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/register/profile/"><?php echo $_smarty_tpl->tpl_vars['user']->value['FIO'];?>
+(<?php echo $_smarty_tpl->tpl_vars['user']->value['EMAIL'];?>
+)</a></li>
+                                    <?php if ($_smarty_tpl->tpl_vars['user']->value['GROUP_ID']==6) {?>
+                                    <li><a href="/register/blog/">Мой блог</a></li>
+                                    <?php }?>
+                                    <li><a href="/register/orders/">Мои заказы</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/login/out/">Выход</a></li>
+                                </ul>
+                            </li>
+                        <?php }?>
                     </ul>
                     <ul class="hidden-sm hidden-xs nav navbar-nav">
                         <li><a href="/shop/cart"><img src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>

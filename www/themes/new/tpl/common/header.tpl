@@ -52,6 +52,7 @@
     <script type="text/javascript" src="{$html_plugins_dir}fancybox/jquery.fancybox.js"></script>
     <script type="text/javascript" src="{$html_plugins_dir}fancybox/jquery.fancybox.pack.js"></script>
     <script type="text/javascript" src="/system/plugins/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/system/plugins/upload.js"></script>
     <script type="text/javascript" src="{$theme_dir}js/main.js"></script>
     {section name=i loop=$js}
         <script  type="text/javascript" src="{$js[i]}"></script>
@@ -61,7 +62,7 @@
     {/section}
 
 </head>
-<body class="{if $main}main-page{else}default-page{/if}">
+<body class="{if $main}main-page{elseif $class}{$class}{else}default-page{/if}">
 <header>
     <nav class="navbar navbar-default {if $main}navbar-fixed-top{/if} navbar-custom">
         <div class="container">
@@ -97,7 +98,25 @@
                     <ul class="nav navbar-nav navbar-icons">
                         <li class="icon-find"><a href="#"><img src="{$theme_dir}img/find.png" alt=""></a></li>
                         <li class="hidden-sm hidden-xs"><a href="#" data-toggle="modal" data-target="#feedback-modal"><img src="{$theme_dir}img/message.png" alt=""></a></li>
-                        {*<li class="hidden-sm hidden-xs"><a href="#"><img src="{$theme_dir}img/signin.png" alt=""></a></li>*}
+                        {if !$login}
+                            <li class="hidden-sm hidden-xs"><a href="#" data-toggle="modal" data-target="#login-modal"><img src="{$theme_dir}img/signin.png" alt=""></a></li>
+                        {else}
+                            <li class="dropdown">
+                                <a title="{$user.FIO}" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user"></i>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/register/profile/">{$user.FIO}({$user.EMAIL})</a></li>
+                                    {if $user.GROUP_ID == 6}
+                                    <li><a href="/register/blog/">Мой блог</a></li>
+                                    {/if}
+                                    <li><a href="/register/orders/">Мои заказы</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/login/out/">Выход</a></li>
+                                </ul>
+                            </li>
+                        {/if}
                     </ul>
                     <ul class="hidden-sm hidden-xs nav navbar-nav">
                         <li><a href="/shop/cart"><img src="{$theme_dir}img/cart.png" alt=""></a></li>

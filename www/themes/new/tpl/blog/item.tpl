@@ -63,20 +63,16 @@
                     </div>
                 <br>
                 {if isset($comments_form)}
-                    <div class="col-md-12">
                         {$comments}
-                    </div>
-
-                        <article class="panel panel-primary comment-form">
-                            <div class="panel-heading">
-                                <h2 class="panel-title"><i class="fa fa-pencil"></i> Добавьте свой комментарий!</h2>
-                            </div>
-                            <div class="panel-body">
-                                {$comments_form}
-                                <div class="clearfix"></div>
-                            </div>
-                        </article>
-
+                    <article class="panel panel-primary comment-form">
+                        <div class="panel-heading">
+                            <h2 class="panel-title"><i class="fa fa-pencil"></i> Добавьте свой комментарий!</h2>
+                        </div>
+                        <div class="panel-body">
+                            {$comments_form}
+                            <div class="clearfix"></div>
+                        </div>
+                    </article>
 
                 {/if}
             </div>

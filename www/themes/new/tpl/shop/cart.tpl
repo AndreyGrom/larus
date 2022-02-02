@@ -92,7 +92,13 @@
             <div class="row itogo">
                 <div class="col-sm-2">ИТОГО</div>
                 <div class="col-sm-6"></div>
-                <div class="col-sm-4">{$total} &#8381;</div>
+                <div class="col-sm-4">
+                    {$total} &#8381;
+                    <a href="/shop/create-order/" class="btn btn-orange-3">Оплатить</a>
+                </div>
+            </div>
+            <div class="text-right">
+
             </div>
         </div>
     </div>

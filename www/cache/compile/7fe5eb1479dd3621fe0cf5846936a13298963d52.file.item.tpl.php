@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-03 17:53:13
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-18 04:32:26
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\blog\item.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:805390006618e4f089fd072-96330183%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7fe5eb1479dd3621fe0cf5846936a13298963d52' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\blog\\item.tpl',
-      1 => 1640271821,
+      1 => 1642465309,
       2 => 'file',
     ),
   ),
@@ -165,22 +165,18 @@ img/icon_ok.png" alt=""></a>
                     </div>
                 <br>
                 <?php if (isset($_smarty_tpl->tpl_vars['comments_form']->value)) {?>
-                    <div class="col-md-12">
                         <?php echo $_smarty_tpl->tpl_vars['comments']->value;?>
 
-                    </div>
+                    <article class="panel panel-primary comment-form">
+                        <div class="panel-heading">
+                            <h2 class="panel-title"><i class="fa fa-pencil"></i> Добавьте свой комментарий!</h2>
+                        </div>
+                        <div class="panel-body">
+                            <?php echo $_smarty_tpl->tpl_vars['comments_form']->value;?>
 
-                        <article class="panel panel-primary comment-form">
-                            <div class="panel-heading">
-                                <h2 class="panel-title"><i class="fa fa-pencil"></i> Добавьте свой комментарий!</h2>
-                            </div>
-                            <div class="panel-body">
-                                <?php echo $_smarty_tpl->tpl_vars['comments_form']->value;?>
-
-                                <div class="clearfix"></div>
-                            </div>
-                        </article>
-
+                            <div class="clearfix"></div>
+                        </div>
+                    </article>
 
                 <?php }?>
             </div>

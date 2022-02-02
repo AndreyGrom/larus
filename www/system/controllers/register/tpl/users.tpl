@@ -14,7 +14,7 @@
     <table class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Ник</th>
+            <th>ФИО</th>
             <th>Регистрация</th>
             <th>Активность</th>
             <th>Действия</th>
@@ -22,7 +22,7 @@
         {section name=i loop=$users}
             <tr>
                 <td>{$users[i].ID}</td>
-                <td>{$users[i].NICK}</a></td>
+                <td>{$users[i].FIO}</a></td>
                 <td>{$users[i].DATE_CREATE}</td>
                 <td>{$users[i].DATE_ACTIVE}</td>
                 <td>

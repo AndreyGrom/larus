@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-11-12 14:24:56
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-18 03:15:44
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\comments\form\default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1539998241618e4f088d6120-26750155%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c21a5c471369fdc7c8a7ac3db902f8fc1f3207cf' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\comments\\form\\default.tpl',
-      1 => 1635422389,
+      1 => 1642420756,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_618e4f089550b6_77783646',
   'variables' => 
   array (
     'error_comment' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'rand' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_618e4f089550b6_77783646',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_618e4f089550b6_77783646')) {function content_618e4f089550b6_77783646($_smarty_tpl) {?><form method="post" class="form-horizontal" id="comments-form">
     <input type="hidden" name="username"/>
@@ -71,7 +71,7 @@ echo $_POST['name'];
         <div class="form-group">
             <label class="control-label" for="email"><i class="fa fa-envelope"></i> Email:</label>
             <div class="">
-                <input type="email" value="<?php if (isset($_POST['email'])) {
+                <input required type="email" value="<?php if (isset($_POST['email'])) {
 echo $_POST['email'];
 }?>" class="form-control" name="email" id="email" placeholder="Email">
             </div>

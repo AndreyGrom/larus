@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-04 14:05:45
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-02-02 11:11:11
          compiled from "D:\data\domains\provoda\www\system\controllers\shop\tpl\items.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:56554792361ab4b8988f0d5-77714352%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1a6835aa1d5fbb67e01db66509864796730d5281' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\system\\controllers\\shop\\tpl\\items.tpl',
-      1 => 1626992978,
+      1 => 1642517961,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_61ab4b898c1d55_88744398',
   'variables' => 
   array (
     'items' => 0,
@@ -25,8 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'total' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_61ab4b898c1d55_88744398',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_61ab4b898c1d55_88744398')) {function content_61ab4b898c1d55_88744398($_smarty_tpl) {?>
 
@@ -77,6 +77,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
         <tr>
             <th>ID</th>
             <th>Название</th>
+            <th>Модель</th>
             <th>Сортировка</th>
             <th>Статус</th>
             <th style="width: 144px;">Действия</th>
@@ -110,6 +111,9 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['i']['last']       = ($_smart
 </td>
             <td><a href="?c=shop&id=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
 "><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['TITLE'];?>
+</a></td>
+            <td><a href="?c=shop&id=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
+"><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['MODEL'];?>
 </a></td>
             <td><?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['SORT'];?>
 </td>

@@ -74,49 +74,20 @@ class AdminRegisterController extends AdminController {
     }
     public function SaveUser(){
         $group_id = $this->post['group_id'];
-        $first_name = isset($this->post['first_name']) ? $this->db->input($_POST['first_name']) : '';
-        $last_name = isset($this->post['last_name']) ? $this->db->input($_POST['last_name']) : '';
-        $father_name = isset($this->post['father_name']) ? $this->db->input($_POST['father_name']) : '';
-        $nick = isset($this->post['nick']) ? $this->db->input($_POST['nick']) : '';
+        $fio = isset($this->post['fio']) ? $this->db->input($_POST['fio']) : '';
         $email = isset($this->post['email']) ? $this->db->input($_POST['email']) : '';
         $password = isset($this->post['password']) ? $this->db->input($_POST['password']) : '';
         $phone = isset($this->post['phone']) ? $this->db->input($_POST['phone']) : '';
-        $skype = isset($_POST['skype']) ? $this->db->input($_POST['skype']) : '';
-        $icq = isset($_POST['icq']) ? $this->db->input($_POST['icq']) : '';
-        $site = isset($_POST['site']) ? $this->db->input($_POST['site']) : '';
-        $birthday = isset($_POST['birthday']) ? $this->db->input($_POST['birthday']) : '';
-        $country = isset($_POST['country']) ? $this->db->input($_POST['country']) : '';
-        $region = isset($_POST['region']) ? $this->db->input($_POST['region']) : '';
-        $city = isset($_POST['city']) ? $this->db->input($_POST['city']) : '';
-        $wmr = isset($_POST['wmr']) ? $this->db->input($_POST['wmr']) : '';
-        $wmz = isset($_POST['wmz']) ? $this->db->input($_POST['wmz']) : '';
-        $yamoney = isset($_POST['yamoney']) ? $this->db->input($_POST['yamoney']) : '';
-        $qiwi = isset($_POST['qiwi']) ? $this->db->input($_POST['qiwi']) : '';
-        $card = isset($_POST['card']) ? $this->db->input($_POST['card']) : '';
-        $signature = isset($_POST['signature']) ? $this->db->input($_POST['signature']) : '';
-
         $params = array(
             'GROUP_ID' => $group_id,
-            'FIRST_NAME' => $first_name,
-            'LAST_NAME' => $last_name,
-            'FATHER_NAME' => $father_name,
-            'NICK' => $nick,
+            'FIO' => $fio,
             'EMAIL' => $email,
             'PASSWORD' => $password,
             'PHONE' => $phone,
-            'SKYPE' => $skype,
-            'ICQ' => $icq,
-            'SITE' => $site,
-            'BIRTHDAY' => $birthday,
-            'COUNTRY' => $country,
-            'REGION' => $region,
-            'CITY' => $city,
-            'WMR' => $wmr,
-            'WMZ' => $wmz,
-            'YAMONEY' => $yamoney,
-            'QIWI' => $qiwi,
-            'CARD' => $card,
-            'SIGNATURE' => $signature,
+            'STATUS' => 1,
+            'DATE_CREATE' => time(),
+            'DATE_ACTIVE' => time(),
+            'HASH' => Func::getInstance()->generateName(30),
         );
 
         if (isset($this->id)){

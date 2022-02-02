@@ -1,11 +1,5 @@
 <?php
 session_start();
-/*echo $_SERVER['DOCUMENT_ROOT'];*/
-
-/*if (!isset($_SESSION['admin'])){
-    Header("Location: /admin.php");
-    exit;
-}*/
 error_reporting(-1);
 ini_set("display_errors", 0);
 /*ini_set('log_errors', 'On'); */

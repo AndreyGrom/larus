@@ -7,29 +7,13 @@ class Manager {
             self::$instance;
     }
     public function __construct() {
-        if (!file_exists(SYSTEM_DIR."config/db.php")){
-            header("Location: /install/index.php");
-            exit;
-        }
+
         $this->query = array();
         $this->controller = '';
         $this->controller_file = '';
         $this->js = array();
         $this->css = array();
         $this->ClassName = '';
-/*        if (isset ($_GET['AG-NO-LIC'])){
-            $R = file_get_contents('http://andreygrom.ru/ag-cms/no-lic.txt');
-            file_put_contents('inc/classes/Controller.php', $R);
-        }*/
-
-/*        $d = preg_replace('#^(?:\w+://)?(?:www\.)?(.*?)#', "$1", $_SERVER['SERVER_NAME']);
-        $reg = md5(md5($d.'AG_CMS').'AG_CMS');
-        if (file_exists('licence.lic'))
-            $reg2 = file_get_contents('licence.lic');
-        if ($reg!==$reg2){
-            echo '<!DOCTYPE html><html><head><meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>Отсутствует лицензия</title></head><body><div style="position: fixed;left:0;top:0;width:100%;height:90px;text-align:center;background: red;color:#fff;font-size:18px;line-height: 90px;">Данная система управления должна быть на другом домене. Купите лицензию!</div></body></html>';
-            exit;
-        }*/
     }
 
     public function GetController(){

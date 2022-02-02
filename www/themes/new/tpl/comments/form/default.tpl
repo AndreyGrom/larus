@@ -36,7 +36,7 @@
         <div class="form-group">
             <label class="control-label" for="email"><i class="fa fa-envelope"></i> Email:</label>
             <div class="">
-                <input type="email" value="{if isset($smarty.post.email)}{$smarty.post.email}{/if}" class="form-control" name="email" id="email" placeholder="Email">
+                <input required type="email" value="{if isset($smarty.post.email)}{$smarty.post.email}{/if}" class="form-control" name="email" id="email" placeholder="Email">
             </div>
         </div>
         {if $captcha}

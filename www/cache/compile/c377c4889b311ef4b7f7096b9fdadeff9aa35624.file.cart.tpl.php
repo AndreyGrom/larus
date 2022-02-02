@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-21 17:20:56
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-24 11:29:08
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\shop\cart.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11235810661baf1b32b1556-34594882%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c377c4889b311ef4b7f7096b9fdadeff9aa35624' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\shop\\cart.tpl',
-      1 => 1640096451,
+      1 => 1640098442,
       2 => 'file',
     ),
   ),
@@ -152,10 +152,17 @@ echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')-
                             </p>
                         </div>
                     </div>
-                    <div class="col-sm-2"><span class="item-price"><?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['RAZ']) {
-echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['RAZ_PRICE'];?>
- &#8381;<?php } else { ?><img style="margin-top: -30px;" class="img-responsive" src="<?php echo $_smarty_tpl->tpl_vars['theme_dir']->value;?>
-img/figa.png" alt=""><?php }?></span></div>
+                    <div class="col-sm-2">
+                        <span class="item-price">
+                            <?php if ($_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['RAZ']) {?>
+                                <?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['RAZ_PRICE'];?>
+ &#8381;
+                            <?php } else { ?>
+                                Нет
+                                
+                            <?php }?>
+                        </span>
+                    </div>
                     <div class="col-sm-2 text-right">
                         <a href="/shop/cart-delete-raz=<?php echo $_smarty_tpl->tpl_vars['items']->value[$_smarty_tpl->getVariable('smarty')->value['section']['i']['index']]['ID'];?>
 ">
@@ -166,9 +173,12 @@ img/delete.png" alt="">
                         </a>
                     </div>
                 </div>
+                <?php if (!$_smarty_tpl->getVariable('smarty')->value['section']['i']['last']) {?>
+                <hr>
+                <?php }?>
                 <div class="cart-product-item"></div>
             <?php endfor; endif; ?>
-            <hr>
+            <div class="delimiter"></div>
             <div class="row itogo">
                 <div class="col-sm-2">ИТОГО</div>
                 <div class="col-sm-6"></div>

@@ -25,5 +25,8 @@
                 {$menu}
             {/if}
         </div>
+        <ul class="nav">
+            <li><a class="btn btn-primary" href="?c=shop&action=types">Типы кабелей</a></li>
+        </ul>
     </div>
 </div>

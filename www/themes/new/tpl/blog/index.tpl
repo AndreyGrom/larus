@@ -53,11 +53,17 @@
                             {$items[i].TITLE}
                         </div>
                         <div class="blog-item-img">
+                        {if $items[i].VIDEO_CODE}
+                            {$items[i].VIDEO_CODE}1
+                        {elseif $items[i].SKIN}
+
                             <a href="/blog/{$items[i].ALIAS}{$url_plus}">
-                                <img class="img-responsive" src="/upload/images/blog/{if $items[i].SKIN}{$items[i].SKIN}{else}Z3i5b3DSYHEiDYKNST7k.jpg{/if}" alt="">
+                                <img class="img-responsive" src="/upload/images/blog/{$items[i].SKIN}" alt="">
                             </a>
                             <div class="blog-item-date">{$items[i].DATE_PUBL}</div>
                             <div class="blog-item-arrow-rect"><img src="{$theme_dir}img/rect-arrow-left.png" alt=""></div>
+
+                        {/if}
                         </div>
                         <div class="blog-item-desc">
                             {$items[i].SHORT_CONTENT}

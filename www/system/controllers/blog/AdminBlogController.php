@@ -59,7 +59,7 @@ class AdminBlogController extends AdminController {
         $meta_keywords    = $this->db->input($this->post['meta_keywords']);
         $delete_image     = $this->post['delete_image'];
         $old_image        = $this->post['old_image'];
-
+        $blogers = $this->post['blogers'];
         $sql = "SELECT * FROM `".db_pref."blog_c` WHERE `ALIAS`='$alias'";
         if ($this->act!=='new_c'){
             $sql .= " AND ID <> $this->cid";
@@ -68,13 +68,15 @@ class AdminBlogController extends AdminController {
         if ($this->db->num_rows($query) == 0){
             $upload_path = UPLOAD_IMAGES_DIR.'blog/';
             $image = Func::getInstance()->UploadFile($_FILES["image"]['name'],$_FILES["image"]['tmp_name'], $upload_path);
+            $params = array(
 
+            );
             if ($this->act == 'new_c'){
                 $sql = "
                     INSERT INTO `".db_pref."blog_c` (
-                    `PARENT`,`TITLE`, `DESC`, `DESC2`, `ALIAS`, `META_DESC`,`META_KEYWORDS`, `PUBLIC`,`TEMPLATE`, `POSITION`, `IMAGE`)
+                    `PARENT`,`TITLE`, `DESC`, `DESC2`, `ALIAS`, `META_DESC`,`META_KEYWORDS`, `PUBLIC`,`TEMPLATE`, `POSITION`, `IMAGE`, `BLOGERS`)
                     VALUES
-                    ('$parent','$title','$desc','$desc2', '$alias','$meta_desc','$meta_keywords','$publ','$template','99999','$image')";
+                    ('$parent','$title','$desc','$desc2', '$alias','$meta_desc','$meta_keywords','$publ','$template','99999','$image', $blogers)";
 
                 $query = $this->db->query($sql);
                 $this->cid = $this->db->last_id();
@@ -100,11 +102,13 @@ class AdminBlogController extends AdminController {
                 `META_DESC` = '$meta_desc',
                 `META_KEYWORDS` = '$meta_keywords',
                 `PUBLIC` = '$publ',
-                `TEMPLATE` = '$template'
+                `TEMPLATE` = '$template',
+                `BLOGERS` = $blogers
                  $img_upd
                  WHERE `ID` = $this->cid";
                 $query = $this->db->query($sql);
             }
+            //var_dump($sql);exit;
             $this->Head("?c=blog&cid=$this->cid");
         } else {
             $this->session['alert'] = 'Такой алиас уже существует';
@@ -161,6 +165,7 @@ class AdminBlogController extends AdminController {
             'FILE1_NAME' => $this->post['file1_name'],
             'FILE2_NAME' => $this->post['file2_name'],
             'FILE3_NAME' => $this->post['file3_name'],
+            'VIDEO' => $this->post['video'],
         );
 
         $sql = "SELECT * FROM `".db_pref."blog_i` WHERE `ALIAS`='$alias'";
@@ -324,6 +329,7 @@ class AdminBlogController extends AdminController {
             'categories' => $this->structure,
             'new'       => true,
             'item_date' => date("d.m.Y", time()),
+            'videos' => $this->GetVideos(),
         ));
         $this->content = $this->SetTemplate('item.tpl');
     }
@@ -379,6 +385,7 @@ class AdminBlogController extends AdminController {
         $this->assign(array(
             'item_date'                => current(explode(" ", $row['DATE_PUBL'])),
             'item'                     => $row,
+            'videos' => $this->GetVideos(),
             'item_id'                  => $row['ID'],
             'categories'               => $this->structure,
             'templates'                => Func::getInstance()->getTemplates($this->templates_dir.'blog/single/'),
@@ -438,6 +445,12 @@ class AdminBlogController extends AdminController {
             }
         }
         return $return;
+    }
+
+    public function GetVideos(){
+        $sql = "SELECT * FROM agcms_video_i ORDER BY TITLE";
+        $items = $this->db->select($sql);
+        return $items;
     }
 
     public function Index(){

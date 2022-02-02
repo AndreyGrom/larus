@@ -104,6 +104,15 @@
                         <input value="{$category_meta_keywords}" name="meta_keywords" type="text" class="form-control" />
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="template" class="col-sm-3 control-label">Доступно блогерам:</label>
+                    <div class="col-sm-9">
+                        <select name="blogers" id="blogers" class="form-control">
+                            <option {if $category.BLOGERS == 0}selected="selected" {/if} value="0">Нет</option>
+                            <option {if $category.BLOGERS == 1}selected="selected" {/if} value="1">Да</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="text-right">

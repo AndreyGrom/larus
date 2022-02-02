@@ -4,7 +4,7 @@ class InitNews extends init_module {
         $this->name = 'Новости сайта';
         $this->version = 1.0;
         $this->author = 'Андрей Гром';
-        $this->visible = true;
+        $this->visible = false;
     }
 }
 ?>

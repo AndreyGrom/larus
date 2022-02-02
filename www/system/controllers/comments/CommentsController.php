@@ -12,13 +12,13 @@ class CommentsController extends Controller {
     }
     public function Index(){
         if (isset($_POST['comment'])){
-            if($this->captcha && $_SESSION['comment'] !== $_POST['captcha']){
+            /*if($this->captcha && $_SESSION['comment'] !== $_POST['captcha']){
                 $this->error = 'Неверно введен код с картинки!';
             }
             if ($_POST["username"] !== '' || $_POST["useremail"] !== ''){
                 $this->error = 'Ваши действия похожи на робота. Комментарий не добавлен';
             }
-            unset($_SESSION['register']);
+            unset($_SESSION['register']);*/
             if ($this->error == ''){
                 $strip_tags = '<a><b><i><u><p><h1><h2><h3><h4><h5><h6><ul><li><div>';
                 $date_publ = time();

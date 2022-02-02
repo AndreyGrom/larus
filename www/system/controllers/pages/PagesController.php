@@ -10,7 +10,7 @@ class PagesController extends Controller {
         $rs = false;
         $number = $this->post['id'];
         $nap = $this->post['nap'];
-        $cid = 1;
+        $cid = $this->post['cid'];
         $sql = "SELECT * FROM agcms_blog_i WHERE PARENT LIKE '%,$cid,%' AND PUBLIC=1";
         if ($items = $this->db->select($sql)){
             if ($nap == 1){
@@ -28,7 +28,7 @@ class PagesController extends Controller {
 
             $rs = $items[$number];
             $rs['NUMBER'] = $number;
-            $rs['SHORT_CONTENT'] = mb_substr(strip_tags($rs['CONTENT']), 0, 400);
+            $rs['SHORT_CONTENT'] = mb_substr(($rs['CONTENT']), 0, 400);
         }
         echo json_encode($rs);
         exit;
@@ -67,6 +67,13 @@ class PagesController extends Controller {
             if (count($sub_pages) > 0){
                 $row['CONTENT'] = $sub_pages[0]['CONTENT'];
                 $sub_pages_status = true;
+            } else {
+                $sub_pages = $this->ModelPages->GetPagesParent($parent_id);
+                //var_dump($sub_pages);
+                if (count($sub_pages) > 0){
+                    //$row['CONTENT'] = $sub_pages[0]['CONTENT'];
+                    $sub_pages_status = true;
+                }
             }
 
             if ($row['ID']>1){

@@ -45,7 +45,11 @@
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6 category-image-item">
-                                    <img class="img-responsive" src="/upload/images/shop/{$item.SKIN}" alt="">
+                                    {if $item.SKIN}
+                                        <a class="fancy" href="/upload/images/shop/{$item.SKIN}">
+                                            <img class="img-responsive" src="/upload/images/shop/{$item.SKIN}" alt="">
+                                        </a>
+                                    {/if}
                                 </div>
                                 <div class="col-sm-6 category-desc">
                                     <p class="category-title">{$item.MODEL}</p>
@@ -91,9 +95,13 @@
                             <div class="row">
                                 {if $item.IMAGES}
                                     {section name=o loop=$item.IMAGES}
+                                        {if $item.SKIN != $item.IMAGES[o]}
                                         <div class="col-sm-3">
-                                            <img class="img-responsive sub-img" src="/upload/images/shop/{$item.IMAGES[o]}" alt=""/>
+                                            <a class="fancy" href="/upload/images/shop/{$item.IMAGES[o]}">
+                                                <img class="img-responsive sub-img" src="/upload/images/shop/{$item.IMAGES[o]}" alt=""/>
+                                            </a>
                                         </div>
+                                        {/if}
                                     {/section}
                                 {/if}
                             </div>

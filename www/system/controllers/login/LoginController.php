@@ -10,9 +10,9 @@ class LoginController extends Controller {
             setcookie('hash','',time()+3600*24*30*6,'/');
             setcookie('user_id','',time()+3600*24*30*6,'/');
             unset($_SESSION['user']);
-            $this->Head($_SERVER['HTTP_REFERER']);
+            $this->Head("/");
         }
-        if (isset($this->get['redirect'])){
+/*        if (isset($this->get['redirect'])){
             $this->redirect = str_replace('-','/',$this->get['redirect']);
         }
         if ($this->login){
@@ -21,35 +21,22 @@ class LoginController extends Controller {
             } else {
                 $this->Head('/');
             }
-        }
-        if (isset($_POST['email'])){
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $sql = "SELECT * FROM `".db_pref."users` WHERE `EMAIL`='$email' AND `PASSWORD`='$password' LIMIT 1";
+        }*/
+        if (isset($_POST['action']) && $_POST['action'] == 'login'){
+            $email = $_POST['user-email'];
+            $password = $_POST['user-password'];
+            $sql = "SELECT * FROM agcms_users WHERE EMAIL = '$email' AND PASSWORD = '$password' LIMIT 1";
             $query = $this->db->query($sql);
-
             if ($this->db->num_rows($query) > 0){
                 $row = $this->db->fetch_array($query);
                 setcookie('hash',$row['HASH'],time()+3600*24*30*6,'/');
                 setcookie('user_id',$row['ID'],time()+3600*24*30*6,'/');
-
-                if ($this->redirect!==''){
-                    $this->Head('/'.$this->redirect);
-                } else {
-                    $this->Head('/');
-                }
+                echo 0;
             } else{
-                $this->error = 'Неправильная пара "Логин-пароль"!';
+                echo  'Неправильная пара "Логин-пароль"!';
             }
+            exit;
         }
-        $this->page_title = 'Вход в аккаунт';
-        $this->assign(array(
-            'error' => $this->error,
-            'redirect' => $this->redir,
-        ));
-        $this->SetPath('login/');
-        $this->content =$this->SetTemplate('login.tpl');
-        return $this->content;
     }
 }
 ?>

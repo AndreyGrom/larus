@@ -58,7 +58,7 @@ function blog_latest_items ($params, &$smarty) {
     if (isset($params['cid'])){
         $db = Database::getInstance();
         $cid = $params['cid'];
-        $sort = 'DATE_PUBL ASC';
+        $sort = 'DATE_PUBL DESC';
         $sort = "ORDER BY $sort";
         $limit = "LIMIT " . $params['limit'];
         $sql = "SELECT * FROM `".db_pref."blog_i` WHERE `PARENT` LIKE ',%$cid%,' AND `PUBLIC`=1 $sort $limit";

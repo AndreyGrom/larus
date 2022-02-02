@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-04 14:05:45
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-02-02 11:12:26
          compiled from "D:\data\domains\provoda\www\system\controllers\shop\tpl\menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7516543161ab4b8980a3b0-06565657%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0c6b966c2750831cedbb0060bb853f54fc8de876' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\system\\controllers\\shop\\tpl\\menu.tpl',
-      1 => 1626992979,
+      1 => 1643789543,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_61ab4b898314b7_73231281',
   'variables' => 
   array (
     'menu' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_61ab4b898314b7_73231281',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_61ab4b898314b7_73231281')) {function content_61ab4b898314b7_73231281($_smarty_tpl) {?><div class="panel-group " role="tablist">
     <div class="panel panel-default">
@@ -51,5 +51,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
             <?php }?>
         </div>
+        <ul class="nav">
+            <li><a class="btn btn-primary" href="?c=shop&action=types">Типы кабелей</a></li>
+        </ul>
     </div>
 </div><?php }} ?>

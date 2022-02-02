@@ -97,7 +97,7 @@
     if ($("#alias").val()==''){
         alias_page_new = true;
     }
-    $("#title").change(function(){
+    $("#model").change(function(){
         if (alias_page_new){
             var str = $(this).val();
             var str2 = SetTranslitRuToLat(str);

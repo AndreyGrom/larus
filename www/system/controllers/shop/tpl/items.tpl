@@ -18,6 +18,7 @@
         <tr>
             <th>ID</th>
             <th>Название</th>
+            <th>Модель</th>
             <th>Сортировка</th>
             <th>Статус</th>
             <th style="width: 144px;">Действия</th>
@@ -26,6 +27,7 @@
         <tr>
             <td>{$items[i].ID}</td>
             <td><a href="?c=shop&id={$items[i].ID}">{$items[i].TITLE}</a></td>
+            <td><a href="?c=shop&id={$items[i].ID}">{$items[i].MODEL}</a></td>
             <td>{$items[i].SORT}</td>
             <td>
                 {if $items[i].PUBLIC==1}

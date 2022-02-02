@@ -505,12 +505,41 @@ class AdminShopController extends AdminController {
         $this->db->query($sql);
         $this->Head("?c=shop&id=" . $this->get['id']);
     }
-
+    public function ShowTypes(){
+        $sql = "SELECT * FROM agcms_shop_types";
+        $items = $this->db->select($sql);
+        $this->assign(array(
+            'items' => $items,
+        ));
+        $this->content = $this->SetTemplate('types.tpl');
+    }
+    public function SaveType(){
+        $param = array(
+            'title' => $this->post['title'],
+        );
+        if ($this->post['id'] > 0){
+            $this->db->update('agcms_shop_types', $param, "ID = " . $this->post['id']);
+        } else {
+            $this->db->insert('agcms_shop_types', $param);
+        }
+        $this->Head("?c=shop&action=types");
+    }
+    public function RemoveType(){
+        $sql = "DELETE FROM agcms_shop_types WHERE ID = " .$this->get['id'];
+        $this->db->query($sql);
+        $this->Head("?c=shop&action=types");
+    }
     public function Index(){
         $this->SetPlugins();
         $this->page_title = 'Магазин';
         if (isset($this->post['save-category'])){
             $this->SaveCategory();
+        }
+        if (isset($this->post['save-type'])){
+            $this->SaveType();
+        }
+        if (isset($this->get['action']) && $this->get['action'] == 'remove-type'){
+            $this->RemoveType();
         }
         /*добавление/редактирование материала*/
         if (isset($this->post['title']) && trim($this->post['title'])!==''){
@@ -529,8 +558,10 @@ class AdminShopController extends AdminController {
         $this->structure = Func::getInstance()->getStructure($this->categories);
         $this->ShowMenu();
 
-
-        if ($this->act == 'fields'){
+        if (isset($this->get['action']) && $this->get['action'] == 'types'){
+            $this->ShowTypes();
+        }
+        elseif ($this->act == 'fields'){
             $this->content = $this->SetTemplate('item-fields-settings.tpl');
         }
         elseif ($this->act == 'remove-raz'){

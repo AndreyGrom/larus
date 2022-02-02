@@ -4,21 +4,33 @@
             {if $new}
                 <span class="form-control">Сначала сохраните материал</span>
             {else}
-                <div class="alert alert-info">
-                    <p>Код вызова: <input onclick="this.select()" class="form-control" style="display:inline-block;width: 270px" type="text" readonly value='[widjet name="blog_images" params="{$item.ID}"]'/></p>
-                </div>
+                <label>Видео</label>
+                <select name="video" class="form-control">
+                    <option value="0">--Выбрать</option>
+                    {section name=i loop=$videos}
+                        <option {if $videos[i].ID == $item.VIDEO}selected{/if} value="{$videos[i].ID}">{$videos[i].TITLE}</option>
+                    {/section}
+                </select>
+                <br>
+                <p>Если выбрано видео, то главное фото в плитке отображаться не будет, будет отображено указанное видео</p>
+                <hr>
                 <div id="upload" class="btn btn-success btn-large"><span>Выбрать файл<span></div>
                 <span id="status"></span>
+                <div class="alert alert-info">
+                    <p>Код вызова: <input onclick="this.select()" class="form-control" style="display:inline-block;width: 270px" type="text" readonly value='[widjet name="blog_images" params="{$item.ID}"]'/></p>
+                    <p>Разместите его в любом тексте, и там будут выведены все изображения, кроме главного</p>
+                </div>
             {/if}
         </div>
         {if !$new}
             <div class="col-sm-12">
                 <div id="item-images">
-                    <ul class="image-list clearfix">
+                    <ul class="image-list">
                         {section name=i loop=$new_images}
                             {include file="image.tpl" image=$images[i] new_image=$new_images[i]}
                         {/section}
                     </ul>
+
                 </div>
             </div>
             <script>

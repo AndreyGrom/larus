@@ -26,7 +26,9 @@
                         </div>
                         <div class="col-sm-5 category-desc">
                             <p class="category-title">{$categories[i].TITLE2}</p>
-                            <p>{$categories[i].DESC}</p>
+                            <div class="category-description">
+                                {$categories[i].DESC}
+                            </div>
                             <a href="#" class="more-btn">ПОДРОБНЕЕ...</a>
                         </div>
 

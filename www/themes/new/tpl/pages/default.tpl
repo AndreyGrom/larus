@@ -13,9 +13,11 @@
                     <div class="page-title">
                         {$page_title}
                     </div>
+                    {if $page.TITLE2}
                     <div class="page-title2">
                         {$page.TITLE2}
                     </div>
+                    {/if}
                 </div>
                 {if $sub_pages}
                     {section name=i loop=$sub_pages}

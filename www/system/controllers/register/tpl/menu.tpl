@@ -15,7 +15,6 @@
             <div class="row" style="padding-left: 16px; padding-top: 9px;">
                 <div class="col-sm-12">
                     <a class="btn btn-info btn-xs" href="?c=register"><span class="glyphicon glyphicon-user"></span> Список пользователей</a>
-                    <a class="btn btn-info btn-xs" href="?c=register&act=settings"><span class="glyphicon glyphicon-cog"></span> Настройки модуля</a>
                 </div>
             </div>
             <div class="row" style="padding-left: 16px; padding-top: 9px;">

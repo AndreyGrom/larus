@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2021-12-21 13:59:55
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2022-01-18 03:19:22
          compiled from "D:\data\domains\provoda\www\themes\new\tpl\shop\item.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:186420940961b9cf266c8cc1-74940261%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '07328ec83e6eb477e9a0ef87150ff75120c6f2f4' => 
     array (
       0 => 'D:\\data\\domains\\provoda\\www\\themes\\new\\tpl\\shop\\item.tpl',
-      1 => 1640084389,
+      1 => 1641847953,
       2 => 'file',
     ),
   ),
@@ -185,8 +185,13 @@ img/cart2.png" alt="">
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6 category-image-item">
-                                    <img class="img-responsive" src="/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['item']->value['SKIN'];?>
+                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['SKIN']) {?>
+                                        <a class="fancy" href="/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['item']->value['SKIN'];?>
+">
+                                            <img class="img-responsive" src="/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['item']->value['SKIN'];?>
 " alt="">
+                                        </a>
+                                    <?php }?>
                                 </div>
                                 <div class="col-sm-6 category-desc">
                                     <p class="category-title"><?php echo $_smarty_tpl->tpl_vars['item']->value['MODEL'];?>
@@ -312,10 +317,15 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['o']['index_next'] = $_smarty
 $_smarty_tpl->tpl_vars['smarty']->value['section']['o']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['o']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['o']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['o']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['o']['total']);
 ?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['SKIN']!=$_smarty_tpl->tpl_vars['item']->value['IMAGES'][$_smarty_tpl->getVariable('smarty')->value['section']['o']['index']]) {?>
                                         <div class="col-sm-3">
-                                            <img class="img-responsive sub-img" src="/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['item']->value['IMAGES'][$_smarty_tpl->getVariable('smarty')->value['section']['o']['index']];?>
+                                            <a class="fancy" href="/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['item']->value['IMAGES'][$_smarty_tpl->getVariable('smarty')->value['section']['o']['index']];?>
+">
+                                                <img class="img-responsive sub-img" src="/upload/images/shop/<?php echo $_smarty_tpl->tpl_vars['item']->value['IMAGES'][$_smarty_tpl->getVariable('smarty')->value['section']['o']['index']];?>
 " alt=""/>
+                                            </a>
                                         </div>
+                                        <?php }?>
                                     <?php endfor; endif; ?>
                                 <?php }?>
                             </div>

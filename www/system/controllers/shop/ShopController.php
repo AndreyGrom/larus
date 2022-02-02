@@ -201,10 +201,8 @@ class ShopController extends Controller {
         $this->db->insert('agcms_shop_cart', $params);
         exit;
     }
+    public function GetCart($hash){
 
-    public function ShowCart(){
-        $cart_id = $this->SetCartId();
-        $total = 0;
         $sql = "SELECT cart.*, len.LEN AS LEN, len.PRICE AS LEN_PRICE, 
         raz.SNAME AS RAZ, raz.SCAPT AS RAZ_CAPT, raz.PRICE AS RAZ_PRICE, 
         i.TITLE AS PRODUCT_TITLE, i.MODEL AS PRODUCT_MODEL, i.SKIN,
@@ -215,20 +213,21 @@ class ShopController extends Controller {
         LEFT JOIN agcms_shop_i i ON cart.PRODUCT_ID = i.ID
         LEFT JOIN agcms_shop_len len ON cart.LEN_ID = len.ID
         LEFT JOIN agcms_shop_raz raz ON cart.RAZ_ID = raz.ID
-        WHERE cart.HASH = '$cart_id' GROUP BY cart.ID";
-        if ($items = $this->db->select($sql)){
+        WHERE cart.HASH = '$hash' GROUP BY cart.ID";
+        return $this->db->select($sql);
+    }
+    public function ShowCart(){
+        $total = 0;
+        $hash = $this->SetCartId();
+        if ($items = $this->GetCart($hash)){
             foreach ($items as $i){
                 $total = $total + $i['LEN_PRICE'] + $i['RAZ_PRICE'];
             }
         }
-
         $this->assign(array(
             'items' => $items,
             'total' => $total,
         ));
-//       var_dump($this->db->error());
-//        var_dump($sql);
-//        var_dump($items);
         $this->SetPath('shop/');
         $this->content = $this->SetTemplate('cart.tpl');
     }
@@ -248,7 +247,38 @@ class ShopController extends Controller {
         $this->db->query($sql);
         $this->Head("/shop/cart");
     }
-
+    public function CreateOrder(){
+        $hash = $this->SetCartId();
+        $params = array(
+            'USER_ID' => $this->user['ID'],
+            'HASH' => $hash,
+            'STATUS' => 0,
+        );
+        $this->db->insert('agcms_shop_orders', $params);
+        $this->Head('/shop/order=' . $this->db->last_id());
+    }
+    public function GetOrder($order_id){
+        $sql = "SELECT * FROM agcms_shop_orders WHERE ID = $order_id LIMIT 1";
+        $order = $this->db->select($sql, array('single_array' => true));
+        $cart = $this->GetCart($order['HASH']);
+        return array('order' => $order, 'cart' => $cart);
+    }
+    public function ShowOrder(){
+        $total = 0;
+        $order_id = $this->get['order'];
+        $rs = $this->GetOrder($order_id);
+        $items = $rs['cart'];
+        foreach ($items as $i){
+            $total = $total + $i['LEN_PRICE'] + $i['RAZ_PRICE'];
+        }
+        $this->assign(array(
+            'order' => $rs['order'],
+            'items' => $items,
+            'total' => $total,
+        ));
+        $this->SetPath('shop/');
+        $this->content = $this->SetTemplate('order.tpl');
+    }
     public function Index(){
         $this->GetCategories();
         $this->assign(array(
@@ -268,7 +298,11 @@ class ShopController extends Controller {
             $this->AddToCart();
         }
         if (count($this->get) > 0){
-            if ($this->category = $this->GetCategory($this->query[0])){
+            if (isset($this->get['order'])){
+                $this->ShowOrder();
+            } elseif (isset($this->get['create-order'])){
+                $this->CreateOrder();
+            } elseif ($this->category = $this->GetCategory($this->query[0])){
                 $this->ShowCategory();
             } elseif (isset($this->get['cart'])){
                 $this->ShowCart();
